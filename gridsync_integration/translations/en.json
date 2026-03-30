@@ -1,0 +1,52 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "GridSync Motorsport Tracker",
+        "description": "Select which motorsport series you want to track.",
+        "data": {
+          "series": "Motorsport Series",
+          "days_filter": "Show events within"
+        },
+        "data_description": {
+          "days_filter": "Only show events starting within this many days. 0 = show all upcoming events."
+        }
+      }
+    },
+    "error": {
+      "no_series_selected": "Please select at least one motorsport series."
+    },
+    "abort": {
+      "already_configured": "GridSync is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "GridSync Options",
+        "data": {
+          "series": "Motorsport Series",
+          "days_filter": "Show events within"
+        },
+        "data_description": {
+          "days_filter": "Only show events starting within this many days. 0 = show all upcoming events."
+        }
+      }
+    },
+    "error": {
+      "no_series_selected": "Please select at least one motorsport series."
+    }
+  },
+  "selector": {
+    "days_filter": {
+      "options": {
+        "0": "All upcoming events",
+        "7": "Next 7 days",
+        "14": "Next 14 days",
+        "30": "Next 30 days",
+        "60": "Next 60 days",
+        "90": "Next 90 days"
+      }
+    }
+  }
+}
