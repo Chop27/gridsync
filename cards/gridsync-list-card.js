@@ -38,7 +38,7 @@ class GridSyncListCard extends HTMLElement {
   }
 
   static getStubConfig() { return {}; }
-  setConfig(config) { this._config = config; this.style.borderRadius = '0'; }
+  setConfig(config) { this._config = config; this.style.borderRadius = '0'; this.style.minHeight = '380px'; }
   getCardSize() { return 4; }
 
   connectedCallback() {
