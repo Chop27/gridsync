@@ -28,23 +28,23 @@ A Home Assistant integration that tracks upcoming motorsport events across 13 se
 
 ### Cards
 
-| Race Calendar (List) | iOS Glass Card | Full Schedule Card |
-|:---:|:---:|:---:|
-| <img src="docs/card-list-view.png" width="220"/> | <img src="docs/card-ios-view.png" width="220"/> | <img src="docs/card-default-view.png" width="220"/> |
+**Race Calendar List** | **Race Calendar Detail**
+:---:|:---:
+<img src="docs/card-list-view.png" width="300"/> | <img src="docs/card-detail-view.png" width="300"/>
 
-### Detail Panel
-<img src="docs/card-detail-view.png" width="400" alt="Detail panel"/>
+**Full Schedule Card** | **iOS Glass Card**
+:---:|:---:
+<img src="docs/card-default-view.png" width="300"/> | <img src="docs/card-ios-view.png" width="300"/>
 
 ---
 
 ## Installation
 
-### Manual
-
-1. Copy `custom_components/gridsync/` into `/config/custom_components/`
+1. Copy `gridsync/` into `/config/custom_components/`
 2. Restart Home Assistant
-3. Copy `www/gridsync/` into `/config/www/gridsync/`
-4. Register resources (see Card Installation below)
+3. Create a `gridsync` folder in `/config/www/`
+4. Copy the card files from `www/gridsync/` into `/config/www/gridsync/`
+5. Register resources (see Card Installation below)
 
 ---
 
@@ -71,9 +71,7 @@ Add each card you want to use as a Lovelace resource:
 | iOS Card | `gridsync-ios-card.js` | `/local/gridsync/gridsync-ios-card.js` |
 | Schedule Card | `gridsync-card.js` | `/local/gridsync/gridsync-card.js` |
 
-Type: **JavaScript module** for all three.
-
-Hard refresh your browser after adding (**Ctrl+Shift+R**).
+Type: **JavaScript module** for all three. Hard refresh your browser after adding (**Ctrl+Shift+R**).
 
 ---
 
