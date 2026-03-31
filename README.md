@@ -259,6 +259,7 @@ automation:
 ## Pending
 
 - [ ] Remote schedule updates — fetch `motorsport_schedule.json` from a hosted URL so calendars update automatically without touching the integration. Planned: GitHub-hosted JSON with hourly fetch and local file fallback for offline use.
+- [ ] Improve session end time accuracy 
 - [ ] Series logos
 
 ---
