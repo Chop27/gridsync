@@ -337,6 +337,162 @@
           }
         }
       ]
+    },
+    "supercars": {
+      "name": "Supercars Championship",
+      "short_name": "Supercars",
+      "logo": "supercars.png",
+      "color": "#EE3123",
+      "events": [
+        {
+          "round": 4,
+          "name": "WD-40 Phillip Island SuperSprint",
+          "track": "Phillip Island Circuit",
+          "location": "Phillip Island, Australia",
+          "flag": "🇦🇺",
+          "start_date": "2026-04-24",
+          "end_date": "2026-04-26",
+          "sessions": {
+            "practice1": "2026-04-24T01:15:00Z",
+            "practice2": "2026-04-24T04:45:00Z",
+            "qualifying1": "2026-04-25T01:10:00Z",
+            "race1": "2026-04-25T04:00:00Z",
+            "qualifying2": "2026-04-26T01:10:00Z",
+            "race2": "2026-04-26T04:00:00Z"
+          }
+        },
+        {
+          "round": 5,
+          "name": "Bunnings Trade Perth SuperNight",
+          "track": "Wanneroo Raceway",
+          "location": "Perth, Australia",
+          "flag": "🇦🇺",
+          "start_date": "2026-05-15",
+          "end_date": "2026-05-17",
+          "sessions": {
+            "practice1": "2026-05-15T08:00:00Z",
+            "practice2": "2026-05-15T11:00:00Z",
+            "qualifying1": "2026-05-16T09:00:00Z",
+            "race1": "2026-05-16T12:00:00Z",
+            "qualifying2": "2026-05-17T09:00:00Z",
+            "race2": "2026-05-17T12:00:00Z"
+          }
+        }
+      ]
+    },
+    "btcc": {
+      "name": "British Touring Car Championship",
+      "short_name": "BTCC",
+      "logo": "btcc.png",
+      "color": "#020255",
+      "events": [
+        {
+          "round": 2,
+          "name": "BTCC Donington Park",
+          "track": "Donington Park",
+          "location": "Donington, UK",
+          "flag": "🇬🇧",
+          "start_date": "2026-04-25",
+          "end_date": "2026-04-26",
+          "sessions": {
+            "practice": "2026-04-25T09:00:00Z",
+            "qualifying": "2026-04-25T13:00:00Z",
+            "race1": "2026-04-26T11:05:00Z",
+            "race2": "2026-04-26T13:15:00Z",
+            "race3": "2026-04-26T15:45:00Z"
+          }
+        },
+        {
+          "round": 3,
+          "name": "BTCC Thruxton",
+          "track": "Thruxton Circuit",
+          "location": "Thruxton, UK",
+          "flag": "🇬🇧",
+          "start_date": "2026-05-16",
+          "end_date": "2026-05-17",
+          "sessions": {
+            "practice": "2026-05-16T09:00:00Z",
+            "qualifying": "2026-05-16T13:00:00Z",
+            "race1": "2026-05-17T11:05:00Z",
+            "race2": "2026-05-17T13:15:00Z",
+            "race3": "2026-05-17T15:45:00Z"
+          }
+        }
+      ]
+    },
+    "gtwce": {
+      "name": "GT World Challenge Europe",
+      "short_name": "GTWCE",
+      "logo": "gtwce.png",
+      "color": "#E31E12",
+      "events": [
+        {
+          "round": 1,
+          "name": "GTWCE Brands Hatch",
+          "track": "Brands Hatch",
+          "location": "Brands Hatch, UK",
+          "flag": "🇬🇧",
+          "start_date": "2026-04-25",
+          "end_date": "2026-04-26",
+          "sessions": {
+            "practice1": "2026-04-25T09:00:00Z",
+            "qualifying": "2026-04-25T15:00:00Z",
+            "race": "2026-04-26T12:00:00Z"
+          }
+        },
+        {
+          "round": 2,
+          "name": "GTWCE Magny-Cours",
+          "track": "Circuit de Nevers Magny-Cours",
+          "location": "Magny-Cours, France",
+          "flag": "🇫🇷",
+          "start_date": "2026-05-23",
+          "end_date": "2026-05-24",
+          "sessions": {
+            "practice1": "2026-05-23T09:00:00Z",
+            "qualifying": "2026-05-23T15:00:00Z",
+            "race": "2026-05-24T12:00:00Z"
+          }
+        }
+      ]
+    },
+    "elms": {
+      "name": "European Le Mans Series",
+      "short_name": "ELMS",
+      "logo": "elms.png",
+      "color": "#FF5F00",
+      "events": [
+        {
+          "round": 1,
+          "name": "4 Hours of Le Castellet",
+          "track": "Circuit Paul Ricard",
+          "location": "Le Castellet, France",
+          "flag": "🇫🇷",
+          "start_date": "2026-04-17",
+          "end_date": "2026-04-18",
+          "sessions": {
+            "practice1": "2026-04-16T09:00:00Z",
+            "practice2": "2026-04-17T09:00:00Z",
+            "qualifying": "2026-04-17T15:00:00Z",
+            "race": "2026-04-18T10:00:00Z"
+          }
+        },
+        {
+          "round": 2,
+          "name": "4 Hours of Imola",
+          "track": "Autodromo Enzo e Dino Ferrari",
+          "location": "Imola, Italy",
+          "flag": "🇮🇹",
+          "start_date": "2026-05-15",
+          "end_date": "2026-05-16",
+          "sessions": {
+            "practice1": "2026-05-14T09:00:00Z",
+            "practice2": "2026-05-15T09:00:00Z",
+            "qualifying": "2026-05-15T15:00:00Z",
+            "race": "2026-05-16T10:00:00Z"
+          }
+        }
+      ]
     }
   }
 }

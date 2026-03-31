@@ -4,33 +4,36 @@
 [![HA Version](https://img.shields.io/badge/Home%20Assistant-2026.3.0%2B-blue)](https://www.home-assistant.io)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-A Home Assistant integration that tracks upcoming motorsport events across multiple series — Formula 1, F2, F3, WEC, IndyCar, NASCAR, IMSA, WRC and NLS — with a companion Lovelace card that displays a live, scrollable race calendar directly on your dashboard.
+A Home Assistant integration that tracks upcoming motorsport events across 13 series with a companion Lovelace card suite — compact list, iOS-style glass widget, and a full schedule card.
 
 ---
 
 ## Features
 
-- 🏎️ **9 series supported** — F1, F2, F3, WEC, IndyCar, NASCAR, IMSA, WRC, NLS
+- 🏎️ **13 series** — F1, F2, F3, WEC, IndyCar, NASCAR, IMSA, WRC, NLS, Supercars, BTCC, GTWCE, ELMS
 - 📅 **One sensor per series** — next event, track, location, dates, full session schedule
-- ⏱️ **Live session detection** — automatically detects and displays active sessions with a pulsing LIVE badge
-- 🔢 **Days filter** — only show events within a configurable number of days
-- 🌍 **Local time** — all session times displayed in your browser's local timezone
-- 🃏 **Companion Lovelace card** — compact scrollable list with slide-in detail panel
-- ♻️ **Auto-refresh** — coordinator updates every hour, card timer ticks every 10 seconds
-- 🔇 **Zero database load** — sensors are explicitly excluded from the HA recorder
+- ⏱️ **Live session detection** — pulsing LIVE badge with 90-minute session windows
+- 🔢 **Days filter** — hide events beyond a configurable number of days
+- 🌍 **Local time** — all session times shown in your browser timezone
+- 🃏 **3 Lovelace cards** — list card, iOS glass card, full schedule card
+- ♻️ **Smart refresh** — hourly coordinator update, 10-second client-side timer
+- 🔇 **Zero database load** — sensors excluded from HA recorder
 
 ---
 
 ## Screenshots
 
 ### Integration Setup
-![Integration setup showing series checkboxes and days filter](docs/setup-config-flow.png)
+<img src="docs/setup-config-flow.png" width="400" alt="Integration setup"/>
 
-### Race Calendar Card
-![List card showing upcoming events for multiple series](docs/card-list-view.png)
+### Cards
 
-### Event Detail Panel
-![Slide-in detail panel showing full session schedule](docs/card-detail-view.png)
+| Race Calendar (List) | iOS Glass Card | Full Schedule Card |
+|:---:|:---:|:---:|
+| <img src="docs/card-list-view.png" width="220"/> | <img src="docs/card-ios-view.png" width="220"/> | <img src="docs/card-default-view.png" width="220"/> |
+
+### Detail Panel
+<img src="docs/card-detail-view.png" width="400" alt="Detail panel"/>
 
 ---
 
@@ -38,46 +41,99 @@ A Home Assistant integration that tracks upcoming motorsport events across multi
 
 ### Manual
 
-1. Copy `custom_components/gridsync/` into your `/config/custom_components/` folder
+1. Copy `custom_components/gridsync/` into `/config/custom_components/`
 2. Restart Home Assistant
+3. Copy `www/gridsync/` into `/config/www/gridsync/`
+4. Register resources (see Card Installation below)
+
+---
+
+## Integration Setup
+
+**Settings → Integrations → + Add Integration → GridSync Motorsport Tracker**
+
+- Select the series you want to track
+- Set a days filter (0 = show all, 30 = only events within 30 days)
+
+To change your selection later: **Settings → Integrations → GridSync → ⚙️ Configure**
 
 ---
 
 ## Card Installation
 
-1. Copy `www/gridsync/gridsync-list-card.js` to `/config/www/gridsync/`
-2. Go to **Settings → Dashboards → ⋮ → Resources → + Add Resource**
-   - URL: `/local/gridsync/gridsync-list-card.js`
-   - Type: **JavaScript module**
-3. Hard refresh your browser (**Ctrl+Shift+R**)
+Add each card you want to use as a Lovelace resource:
+
+**Settings → Dashboards → ⋮ → Resources → + Add Resource**
+
+| Card | File | URL |
+|------|------|-----|
+| List Card | `gridsync-list-card.js` | `/local/gridsync/gridsync-list-card.js` |
+| iOS Card | `gridsync-ios-card.js` | `/local/gridsync/gridsync-ios-card.js` |
+| Schedule Card | `gridsync-card.js` | `/local/gridsync/gridsync-card.js` |
+
+Type: **JavaScript module** for all three.
+
+Hard refresh your browser after adding (**Ctrl+Shift+R**).
 
 ---
 
-## Configuration
+## Cards
 
-### Step 1 — Add the Integration
+### 1. List Card — `gridsync-list-card`
 
-**Settings → Integrations → + Add Integration → GridSync Motorsport Tracker**
-
-- Select the series you want to track
-- Set a days filter (0 = show all events regardless of how far away)
-
-### Step 2 — Add the Card
+Compact scrollable list sorted by time to next session. Tap any row to open a slide-in detail panel with the full session schedule.
 
 ```yaml
 type: custom:gridsync-list-card
 ```
 
+**Features:**
+- Sorted by closest upcoming session
+- Live session detection with countdown between sessions
+- Slide-in detail panel with complete schedule
+- Past sessions marked as Complete, live session with pulsing dot
+- Minimum height 380px built-in
+
+---
+
+### 2. iOS Glass Card — `gridsync-ios-card`
+
+Apple-style liquid glass widget. One series at a time, navigate with arrows or dots.
+
+```yaml
+type: custom:gridsync-ios-card
+title: Race Calendar
+```
+
+**Features:**
+- Liquid glass design with blur and shine effects
+- All sessions shown, past ones faded
+- Navigation arrows and dot indicators
+- Fixed height 435px — no layout shifts
+- Sorted by closest upcoming session
+
+---
+
+### 3. Full Schedule Card — `gridsync-card`
+
+Vertical list showing all selected series with complete session schedules expanded.
+
+```yaml
+type: custom:gridsync-card
+title: Motorsport Schedule
+```
+
+**Features:**
+- All sessions shown — past faded, future full opacity
+- Full session names (Practice 1, Sprint Qualifying, etc.)
+- Sorted by closest upcoming session
+- Live indicator with pulsing dot
+
 ---
 
 ## Sensors
 
-One sensor is created per selected series:
-
-| Entity | Example State |
-|--------|---------------|
-| `sensor.gridsync_formula_1` | `Japanese Grand Prix · 2026-03-27 – 2026-03-29` |
-| `sensor.gridsync_ntt_indycar_series` | `Alabama Indy Grand Prix · 2026-03-27 – 2026-03-29` |
+One sensor per selected series, e.g. `sensor.gridsync_formula_1`
 
 ### Sensor Attributes
 
@@ -95,7 +151,7 @@ One sensor is created per selected series:
 | `start_date` | Event start `YYYY-MM-DD` |
 | `end_date` | Event end `YYYY-MM-DD` |
 | `sessions` | Dict of session name → UTC ISO datetime |
-| `days_until` | Days until event starts |
+| `days_until` | Days until event starts (0 = this weekend) |
 | `next_session` | Name of next upcoming session |
 | `next_session_time` | ISO datetime of next session |
 
@@ -103,13 +159,14 @@ One sensor is created per selected series:
 
 ## Card Behaviour
 
-| State | List view | Detail view |
-|-------|-----------|-------------|
-| Upcoming | Days until | Full session schedule |
-| Active weekend | Next session + countdown | Sessions with upcoming times |
-| Live session | **LIVE** · Session name (red) | **LIVE** badge + pulsing dot |
-| Between sessions | Countdown to next session | Sessions with Complete / upcoming |
-| Weekend complete | Complete | All sessions marked Complete |
+| State | List card | Detail panel |
+|-------|-----------|--------------|
+| Upcoming | Days until event | Full session schedule |
+| Active weekend | Next session + countdown | Sessions with times |
+| Live session | LIVE · Session name (red) | LIVE badge + pulsing dot |
+| Between sessions | Countdown to next (e.g. `1h 30m`) | Sessions, past = Complete |
+| Weekend complete | Complete | All sessions Complete |
+| After midnight | Next event loaded | — |
 
 ---
 
@@ -126,16 +183,21 @@ One sensor is created per selected series:
 | `imsa` | IMSA WeatherTech SportsCar Championship | `#E51B24` |
 | `wrc` | World Rally Championship | `#FFFFFF` |
 | `nls` | Nürburgring Langstrecken-Serie | `#067748` |
+| `supercars` | Supercars Championship | `#EE3123` |
+| `btcc` | British Touring Car Championship | `#020255` |
+| `gtwce` | GT World Challenge Europe | `#E31E12` |
+| `elms` | European Le Mans Series | `#FF5F00` |
 
 ---
 
 ## Updating the Schedule
 
-The race calendar is bundled in `custom_components/gridsync/motorsport_schedule.json`. To update it:
+The calendar lives in `custom_components/gridsync/motorsport_schedule.json`. To update:
 
-1. Edit the JSON file — each series has a list of events with session times in UTC
-2. Reload the integration: **Settings → Integrations → GridSync → ⋮ → Reload**
-3. No restart required
+1. Edit the JSON — add/remove events, fix session times
+2. **Settings → Integrations → GridSync → ⋮ → Reload** — no restart needed
+
+All session times must be in **UTC**.
 
 ### JSON Structure
 
@@ -165,30 +227,12 @@ The race calendar is bundled in `custom_components/gridsync/motorsport_schedule.
             "qualifying": "2026-03-28T06:00:00Z",
             "race": "2026-03-29T05:00:00Z"
           }
-        },
-        {
-          "round": 4,
-          "name": "Miami Grand Prix",
-          "track": "Miami International Autodrome",
-          "location": "Miami, USA",
-          "flag": "🇺🇸",
-          "start_date": "2026-05-01",
-          "end_date": "2026-05-03",
-          "sessions": {
-            "practice1": "2026-05-01T17:30:00Z",
-            "sprint_qualifying": "2026-05-01T21:30:00Z",
-            "sprint": "2026-05-02T17:00:00Z",
-            "qualifying": "2026-05-02T21:00:00Z",
-            "race": "2026-05-03T19:00:00Z"
-          }
         }
       ]
     }
   }
 }
 ```
-
-All session times are in **UTC**.
 
 ---
 
@@ -214,6 +258,13 @@ automation:
 
 ---
 
+## Pending
+
+- [ ] Remote schedule updates — fetch `motorsport_schedule.json` from a hosted URL so calendars update automatically without touching the integration. Planned: GitHub-hosted JSON with hourly fetch and local file fallback for offline use.
+- [ ] Series logos
+
+---
+
 ## License
 
 MIT — see [LICENSE](LICENSE) for details.
@@ -223,6 +274,6 @@ MIT — see [LICENSE](LICENSE) for details.
 ## Contributing
 
 Pull requests welcome. To add a new series:
-1. Add it to `AVAILABLE_SERIES` in `const.py`
+1. Add it to `AVAILABLE_SERIES` and `SERIES_COLORS` in `const.py`
 2. Add its events to `motorsport_schedule.json`
-3. Add its color to `LIST_SERIES_META` in `gridsync-list-card.js`
+3. Add its color to `LIST_SERIES_META` in each card JS file

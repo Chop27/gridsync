@@ -17,6 +17,10 @@ AVAILABLE_SERIES = {
     "imsa": "IMSA WeatherTech SportsCar Championship",
     "wrc": "World Rally Championship",
     "nls": "Nürburgring Langstrecken-Serie",
+    "supercars": "Supercars Championship",
+    "btcc": "British Touring Car Championship",
+    "gtwce": "GT World Challenge Europe",
+    "elms": "European Le Mans Series",
 }
 
 SERIES_COLORS = {
@@ -29,6 +33,10 @@ SERIES_COLORS = {
     "imsa": "#E51B24",
     "wrc": "#FFFFFF",
     "nls": "#067748",
+    "supercars": "#EE3123",
+    "btcc": "#020255",
+    "gtwce": "#E31E12",
+    "elms": "#FF5F00",
 }
 
 # Series colors for UI

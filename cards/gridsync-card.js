@@ -12,6 +12,10 @@ const SERIES_META = {
   imsa:    { label: "IMSA",    color: "#E51B24", accent: "#FF4D55" },
   wrc:     { label: "WRC",     color: "#E0E0E0", accent: "#FFFFFF" },
   nls:     { label: "NLS",     color: "#067748", accent: "#00A651" },
+  supercars: { label: "Supercars", color: "#EE3123", accent: "#FF5544" },
+  btcc:      { label: "BTCC",      color: "#020255", accent: "#0033AA" },
+  gtwce:     { label: "GTWCE",     color: "#E31E12", accent: "#FF4444" },
+  elms:      { label: "ELMS",      color: "#FF5F00", accent: "#FF8833" },
 };
 
 const SESSION_LABELS = {
@@ -24,6 +28,8 @@ const SESSION_LABELS = {
   race: "Race", race1: "Race 1", race2: "Race 2",
   warmup: "Warm Up",
   shakedown: "Shakedown", day1: "Day 1", day2: "Day 2", day3: "Day 3",
+  qualifying1: "Qualifying 1", qualifying2: "Qualifying 2",
+  race3: "Race 3",
 };
 
 class GridSyncCard extends HTMLElement {

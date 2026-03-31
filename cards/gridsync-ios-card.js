@@ -13,6 +13,10 @@ const IOS_SERIES_META = {
   imsa:    { label: "IMSA",    color: "#E51B24", bg: "rgba(229,27,36,0.18)"    },
   wrc:     { label: "WRC",     color: "#E0E0E0", bg: "rgba(255,255,255,0.12)"  },
   nls:     { label: "NLS",     color: "#067748", bg: "rgba(6,119,72,0.2)"      },
+  supercars: { label: "Supercars", color: "#EE3123", bg: "rgba(238,49,35,0.18)"   },
+  btcc:      { label: "BTCC",      color: "#020255", bg: "rgba(2,2,85,0.35)"       },
+  gtwce:     { label: "GTWCE",     color: "#E31E12", bg: "rgba(227,30,18,0.18)"    },
+  elms:      { label: "ELMS",      color: "#FF5F00", bg: "rgba(255,95,0,0.18)"     },
 };
 
 const IOS_SESSION_LABELS = {
@@ -25,6 +29,8 @@ const IOS_SESSION_LABELS = {
   race: "Race", race1: "Race 1", race2: "Race 2",
   warmup: "Warm Up",
   shakedown: "Shakedown", day1: "Day 1", day2: "Day 2", day3: "Day 3",
+  qualifying1: "Qualifying 1", qualifying2: "Qualifying 2",
+  race3: "Race 3",
 };
 
 class GridSyncIosCard extends HTMLElement {
