@@ -14,7 +14,7 @@ const IOS_SERIES_META = {
   wrc:     { label: "WRC",     color: "#E0E0E0", bg: "rgba(255,255,255,0.12)"  },
   nls:     { label: "NLS",     color: "#067748", bg: "rgba(6,119,72,0.2)"      },
   supercars: { label: "Supercars", color: "#EE3123", bg: "rgba(238,49,35,0.18)"   },
-  btcc:      { label: "BTCC",      color: "#020255", bg: "rgba(2,2,85,0.35)"       },
+  btcc:      { label: "BTCC",      color: "#0012ff", bg: "rgba(2,2,85,0.35)"       },
   gtwce:     { label: "GTWCE",     color: "#E31E12", bg: "rgba(227,30,18,0.18)"    },
   elms:      { label: "ELMS",      color: "#FF5F00", bg: "rgba(255,95,0,0.18)"     },
 };
