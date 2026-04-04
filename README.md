@@ -48,7 +48,7 @@ A Home Assistant integration that tracks upcoming motorsport events across 13 se
 
 ## Installation
 
-1. Copy `custom_components/gridsync/` into `/config/custom_components/`
+1. Copy `custom_components/gridsync/` into `/config/custom_components/gridsync/`
 2. Restart Home Assistant
 3. Create a `gridsync` folder in `/config/www/`
 4. Copy the card files from `cards/` into `/config/www/gridsync/`
