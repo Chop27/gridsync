@@ -1,36 +1,8 @@
 /**
- * GridSync Motorsport Card v3.0
+ * GridSync Motorsport Card v3.1
+ * Requires gridsync-data.js loaded as a Lovelace resource before this file.
  */
 
-const SERIES_META = {
-  f1:      { label: "F1",      color: "#E10600", accent: "#FF4D6D" },
-  f2:      { label: "F2",      color: "#004267", accent: "#0072BC" },
-  f3:      { label: "F3",      color: "#676767", accent: "#999999" },
-  wec:     { label: "WEC",     color: "#00B9FF", accent: "#4AD4FF" },
-  indycar: { label: "IndyCar", color: "#0072BC", accent: "#4A90E2" },
-  nascar:  { label: "NASCAR",  color: "#FFD700", accent: "#FFA500" },
-  imsa:    { label: "IMSA",    color: "#E51B24", accent: "#FF4D55" },
-  wrc:     { label: "WRC",     color: "#E0E0E0", accent: "#FFFFFF" },
-  nls:     { label: "NLS",     color: "#067748", accent: "#00A651" },
-  supercars: { label: "Supercars", color: "#EE3123", accent: "#FF5544" },
-  btcc:      { label: "BTCC",      color: "#020255", accent: "#0033AA" },
-  gtwce:     { label: "GTWCE",     color: "#E31E12", accent: "#FF4444" },
-  elms:      { label: "ELMS",      color: "#FF5F00", accent: "#FF8833" },
-};
-
-const SESSION_LABELS = {
-  practice1: "Practice 1", practice2: "Practice 2", practice3: "Practice 3",
-  practice: "Practice", sprint_qualifying: "Sprint Qualifying", sprint: "Sprint",
-  qualifying: "Qualifying", qualifying_day1: "Qualifying Day 1", qualifying_day2: "Qualifying Day 2",
-  sprint_race: "Sprint Race", feature_race: "Feature Race",
-  hyperpole: "Hyperpole", carb_day: "Carb Day",
-  duel1: "Duel 1", duel2: "Duel 2",
-  race: "Race", race1: "Race 1", race2: "Race 2",
-  warmup: "Warm Up",
-  shakedown: "Shakedown", day1: "Day 1", day2: "Day 2", day3: "Day 3",
-  qualifying1: "Qualifying 1", qualifying2: "Qualifying 2",
-  race3: "Race 3",
-};
 
 class GridSyncCard extends HTMLElement {
   constructor() {
@@ -83,8 +55,8 @@ class GridSyncCard extends HTMLElement {
     const sessions = a.sessions || {};
     // Next upcoming session time
     const upcoming = Object.values(sessions)
-      .map(v => new Date(v))
-      .filter(d => d > now)
+      .map(v => new Date(typeof v === "object" && v !== null ? v.start : v))
+      .filter(d => !isNaN(d) && d > now)
       .sort((a, b) => a - b);
     if (upcoming.length) return upcoming[0] - now;
     return (a.days_until ?? 999) * 86400000;
@@ -125,14 +97,19 @@ class GridSyncCard extends HTMLElement {
   _renderCard(sensor) {
     const a = sensor.state.attributes;
     const sid = a.series_id || "";
-    const meta = SERIES_META[sid] || { label: sid.toUpperCase(), color: "#666", accent: "#888" };
+    const meta = (window.GRIDSYNC_SERIES_META || {})[sid] || { label: sid.toUpperCase(), color: "#666", accent: "#888" };
     const badge = this._daysLabel(a.days_until);
     const dateRange = this._fmtDateRange(a.start_date, a.end_date);
     const now = new Date();
 
     // All sessions — past ones faded, future ones normal
     const sessions = Object.entries(a.sessions || {})
-      .map(([k, v]) => ({ label: SESSION_LABELS[k] || k, dt: new Date(v), past: new Date(v) < now }))
+      .map(([k, v]) => {
+        const start = typeof v === "object" && v !== null ? v.start : v;
+        const dt = new Date(start);
+        return { label: (window.GRIDSYNC_SESSION_LABELS || {})[k] || k.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()), dt, past: dt < now };
+      })
+      .filter(s => !isNaN(s.dt))
       .sort((a, b) => a.dt - b.dt);
 
     const sessionsHTML = sessions.length ? `
@@ -206,7 +183,7 @@ class GridSyncCard extends HTMLElement {
 
         .race-card.is-live {
           background: rgba(255,255,255,0.06);
-          box-shadow: 0 0 24px color-mix(in srgb, var(--c) 20%, transparent);
+          box-shadow: 0 0 24px rgba(255,255,255,0.08);
         }
 
         .card-glow {
@@ -226,7 +203,7 @@ class GridSyncCard extends HTMLElement {
           font-size: 11px; font-weight: 800;
           letter-spacing: 0.12em; text-transform: uppercase;
           color: var(--c);
-          background: color-mix(in srgb, var(--c) 15%, transparent);
+          background: rgba(255,255,255,0.08);
           padding: 2px 8px; border-radius: 4px;
         }
 
@@ -240,7 +217,7 @@ class GridSyncCard extends HTMLElement {
 
         .days-live {
           color: var(--c);
-          background: color-mix(in srgb, var(--c) 15%, transparent);
+          background: rgba(255,255,255,0.08);
           animation: pulse-badge 1.5s ease-in-out infinite;
         }
 
@@ -315,13 +292,15 @@ class GridSyncCard extends HTMLElement {
   }
 }
 
-customElements.define("gridsync-card", GridSyncCard);
-window.customCards = window.customCards || [];
-window.customCards.push({
-  type: "gridsync-card",
-  name: "GridSync Motorsport Card",
-  description: "Upcoming motorsport events from GridSync.",
-});
-console.info("%c GRIDSYNC %c v3.0 ",
-  "background:#E10600;color:#fff;font-weight:700;padding:2px 6px;border-radius:4px 0 0 4px",
-  "background:#111318;color:#aaa;padding:2px 6px;border-radius:0 4px 4px 0");
+if (!customElements.get("gridsync-card")) {
+  customElements.define("gridsync-card", GridSyncCard);
+  window.customCards = window.customCards || [];
+  window.customCards.push({
+    type: "gridsync-card",
+    name: "GridSync Motorsport Card",
+    description: "Upcoming motorsport events from GridSync.",
+  });
+  console.info("%c GRIDSYNC %c v3.1 ",
+    "background:#E10600;color:#fff;font-weight:700;padding:2px 6px;border-radius:4px 0 0 4px",
+    "background:#111318;color:#aaa;padding:2px 6px;border-radius:0 4px 4px 0");
+}

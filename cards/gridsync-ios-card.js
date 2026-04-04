@@ -1,37 +1,10 @@
 /**
- * GridSync iOS26 Card v2.0
+ * GridSync iOS26 Card v2.1
  * Apple-style liquid glass widget for motorsport events
+ * Requires gridsync-data.js loaded as a Lovelace resource before this file.
  */
 
-const IOS_SERIES_META = {
-  f1:      { label: "F1",      color: "#E10600", bg: "rgba(225,6,0,0.18)"      },
-  f2:      { label: "F2",      color: "#004267", bg: "rgba(0,66,103,0.25)"     },
-  f3:      { label: "F3",      color: "#676767", bg: "rgba(103,103,103,0.2)"   },
-  wec:     { label: "WEC",     color: "#00B9FF", bg: "rgba(0,185,255,0.18)"    },
-  indycar: { label: "IndyCar", color: "#0072BC", bg: "rgba(0,114,188,0.18)"    },
-  nascar:  { label: "NASCAR",  color: "#FFD700", bg: "rgba(255,215,0,0.18)"    },
-  imsa:    { label: "IMSA",    color: "#E51B24", bg: "rgba(229,27,36,0.18)"    },
-  wrc:     { label: "WRC",     color: "#E0E0E0", bg: "rgba(255,255,255,0.12)"  },
-  nls:     { label: "NLS",     color: "#067748", bg: "rgba(6,119,72,0.2)"      },
-  supercars: { label: "Supercars", color: "#EE3123", bg: "rgba(238,49,35,0.18)"   },
-  btcc:      { label: "BTCC",      color: "#0012ff", bg: "rgba(2,2,85,0.35)"       },
-  gtwce:     { label: "GTWCE",     color: "#E31E12", bg: "rgba(227,30,18,0.18)"    },
-  elms:      { label: "ELMS",      color: "#FF5F00", bg: "rgba(255,95,0,0.18)"     },
-};
 
-const IOS_SESSION_LABELS = {
-  practice1: "Practice 1", practice2: "Practice 2", practice3: "Practice 3",
-  practice: "Practice", sprint_qualifying: "Sprint Qualifying", sprint: "Sprint",
-  qualifying: "Qualifying", qualifying_day1: "Qualifying Day 1", qualifying_day2: "Qualifying Day 2",
-  sprint_race: "Sprint Race", feature_race: "Feature Race",
-  hyperpole: "Hyperpole", carb_day: "Carb Day",
-  duel1: "Duel 1", duel2: "Duel 2",
-  race: "Race", race1: "Race 1", race2: "Race 2",
-  warmup: "Warm Up",
-  shakedown: "Shakedown", day1: "Day 1", day2: "Day 2", day3: "Day 3",
-  qualifying1: "Qualifying 1", qualifying2: "Qualifying 2",
-  race3: "Race 3",
-};
 
 class GridSyncIosCard extends HTMLElement {
   constructor() {
@@ -85,7 +58,8 @@ class GridSyncIosCard extends HTMLElement {
     const a = sensor.attributes;
     const now = new Date();
     const upcoming = Object.values(a.sessions || {})
-      .map(v => new Date(v)).filter(d => d > now).sort((a, b) => a - b);
+      .map(v => new Date(typeof v === "object" && v !== null ? v.start : v))
+      .filter(d => !isNaN(d) && d > now).sort((a, b) => a - b);
     if (upcoming.length) return upcoming[0] - now;
     return (a.days_until ?? 999) * 86400000;
   }
@@ -120,7 +94,7 @@ class GridSyncIosCard extends HTMLElement {
   _renderSlide(sensor) {
     const a = sensor.state.attributes;
     const sid = a.series_id || "";
-    const meta = IOS_SERIES_META[sid] || { label: sid.toUpperCase(), color: "#FFF", bg: "rgba(255,255,255,0.12)" };
+    const meta = (window.GRIDSYNC_SERIES_META || {})[sid] || { label: sid.toUpperCase(), color: "#FFF", bg: "rgba(255,255,255,0.12)" };
     const days = a.days_until;
     const isLive = days === 0;
     const dateRange = this._fmtDateRange(a.start_date, a.end_date);
@@ -128,11 +102,12 @@ class GridSyncIosCard extends HTMLElement {
 
     // All sessions — past faded
     const sessions = Object.entries(a.sessions || {})
-      .map(([k, v]) => ({
-        label: IOS_SESSION_LABELS[k] || k,
-        dt: new Date(v),
-        past: new Date(v) < now
-      }))
+      .map(([k, v]) => {
+        const start = typeof v === "object" && v !== null ? v.start : v;
+        const dt = new Date(start);
+        return { label: (window.GRIDSYNC_SESSION_LABELS || {})[k] || k, dt, past: dt < now };
+      })
+      .filter(s => !isNaN(s.dt))
       .sort((a, b) => a.dt - b.dt);
 
     const sessionsHTML = sessions.map(s => `
@@ -440,6 +415,6 @@ window.customCards.push({
   name: "GridSync iOS26 Card",
   description: "Apple-style liquid glass motorsport widget.",
 });
-console.info("%c GRIDSYNC iOS %c v2.0 ",
+console.info("%c GRIDSYNC iOS %c v2.1 ",
   "background:#0072BC;color:#fff;font-weight:700;padding:2px 6px;border-radius:4px 0 0 4px",
   "background:#1c1c1e;color:#aaa;padding:2px 6px;border-radius:0 4px 4px 0");

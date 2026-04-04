@@ -1,34 +1,9 @@
 /**
- * GridSync List Card v9.0
+ * GridSync List Card v9.1
+ * Requires gridsync-data.js loaded as a Lovelace resource before this file.
  */
 
-const LIST_SERIES_META = {
-  f1:      { color: "#E10600" },
-  f2:      { color: "#004267" },
-  f3:      { color: "#676767" },
-  wec:     { color: "#00B9FF" },
-  indycar: { color: "#0072BC" },
-  nascar:  { color: "#FFD700" },
-  imsa:    { color: "#E51B24" },
-  wrc:     { color: "#E0E0E0" },
-  nls:     { color: "#067748" },
-  supercars: { color: "#EE3123" },
-  btcc:      { color: "#020255" },
-  gtwce:     { color: "#E31E12" },
-  elms:      { color: "#FF5F00" },
-};
 
-const SESSION_LABELS = {
-  practice1: "Practice 1", practice2: "Practice 2", practice3: "Practice 3",
-  practice: "Practice", sprint_qualifying: "Sprint Qualifying", sprint: "Sprint",
-  qualifying: "Qualifying", qualifying_day1: "Qualifying Day 1", qualifying_day2: "Qualifying Day 2",
-  sprint_race: "Sprint Race", feature_race: "Feature Race",
-  hyperpole: "Hyperpole", carb_day: "Carb Day",
-  duel1: "Duel 1", duel2: "Duel 2", race: "Race", race1: "Race 1", race2: "Race 2",
-  shakedown: "Shakedown", day1: "Day 1", day2: "Day 2", day3: "Day 3",
-  qualifying1: "Qualifying 1", qualifying2: "Qualifying 2",
-  race3: "Race 3",
-};
 
 class GridSyncListCard extends HTMLElement {
   constructor() {
@@ -147,42 +122,57 @@ class GridSyncListCard extends HTMLElement {
     return today >= startDay && today <= endDay;
   }
 
+  // Extract start Date — supports string or {start, end} object
+  _sessionStart(v) {
+    const raw = (typeof v === "object" && v !== null) ? v.start : v;
+    return raw ? new Date(raw) : null;
+  }
+
+  // Compute session end Date.
+  // Rules when end is null:
+  //   race/race1/race2/race3 → 180 min fallback
+  //   day1/day2/day3 (WRC)  → whole event (handled in _getLiveSession via _isWeekend)
+  //   anything else          → 90 min fallback
+  _sessionEnd(key, v, nextStart) {
+    if (typeof v === "object" && v !== null && v.end) return new Date(v.end);
+    const wrcDays = ["day1", "day2", "day3"];
+    if (wrcDays.includes(key)) return null; // signal: live for whole weekend
+    const fallbacks = {
+      race: 180, race1: 180, race2: 180, race3: 180,
+      qualifying_race: 240, carb_day: 300,
+      test_day: 360,
+    };
+    const mins = fallbacks[key] !== undefined ? fallbacks[key] : 90;
+    const start = this._sessionStart(v);
+    return start ? new Date(start.getTime() + mins * 60 * 1000) : null;
+  }
+
   _getLiveSession(sessions) {
     const now = new Date();
     const sorted = Object.entries(sessions || {})
-      .map(([k, v]) => ({ key: k, label: SESSION_LABELS[k] || k, dt: new Date(v) }))
+      .map(([k, v]) => ({ key: k, label: (window.GRIDSYNC_SESSION_LABELS || {})[k] || k, dt: this._sessionStart(v), raw: v }))
+      .filter(s => s.dt !== null)
       .sort((a, b) => a.dt - b.dt);
 
-    // Durations per session type (minutes)
-    // Practice & qualifying: always 90 min hard limit
-    // Races: long window, coordinator complete_today handles the rest
-    const durations = {
-      // Practice — 90 min hard cutoff
-      practice1: 90, practice2: 90, practice3: 90, practice: 90,
-      // Qualifying — 90 min hard cutoff
-      qualifying: 90, sprint_qualifying: 90,
-      qualifying_day1: 90, qualifying_day2: 90,
-      hyperpole: 90,
-      // Sprint/feature races
-      sprint: 90, sprint_race: 90, feature_race: 90,
-      // Main races — 3h then complete_today takes over
-      race: 180, race1: 300, race2: 300,
-      // WRC
-      shakedown: 90, day1: 600, day2: 600, day3: 600,
-      // NASCAR / IndyCar misc
-      duel1: 90, duel2: 90, carb_day: 120,
-      // Carb day / warmup
-      warmup: 30,
-    };
+    const wrcDays = ["day1", "day2", "day3"];
 
     for (let i = 0; i < sorted.length; i++) {
       const s = sorted[i];
+      if (now < s.dt) continue; // not started yet
+
+      // WRC rally days: live from session start until midnight local
+      if (wrcDays.includes(s.key)) {
+        const midnight = new Date(s.dt);
+        midnight.setHours(23, 59, 59, 999);
+        if (now <= midnight) return s;
+        continue;
+      }
+
       const next = sorted[i + 1];
-      const durationMins = durations[s.key] || 60;
-      const durationEnd = new Date(s.dt.getTime() + durationMins * 60 * 1000);
-      // Use the earlier of: duration end OR next session start
-      const end = next ? new Date(Math.min(next.dt, durationEnd)) : durationEnd;
-      if (now >= s.dt && now < end) return s;
+      const endDt = this._sessionEnd(s.key, s.raw, next ? next.dt : null);
+      if (!endDt) continue;
+      const effectiveEnd = next ? new Date(Math.min(next.dt, endDt)) : endDt;
+      if (now < effectiveEnd) return s;
     }
     return null;
   }
@@ -190,16 +180,18 @@ class GridSyncListCard extends HTMLElement {
   _getNextSession(sessions) {
     const now = new Date();
     return Object.entries(sessions || {})
-      .map(([k, v]) => ({ label: SESSION_LABELS[k] || k, dt: new Date(v) }))
-      .filter(s => s.dt > now)
+      .map(([k, v]) => ({ label: (window.GRIDSYNC_SESSION_LABELS || {})[k] || k, dt: this._sessionStart(v) }))
+      .filter(s => s.dt && s.dt > now)
       .sort((a, b) => a.dt - b.dt)[0] || null;
   }
 
   _allSessionsDone(sessions) {
-    // Only complete if no session is currently live
     if (this._getLiveSession(sessions)) return false;
     const now = new Date();
-    return Object.values(sessions || {}).every(v => new Date(v) < now);
+    return Object.values(sessions || {}).every(v => {
+      const dt = this._sessionStart(v);
+      return dt && dt < now;
+    });
   }
 
   _dayRelative(dt) {
@@ -286,7 +278,7 @@ class GridSyncListCard extends HTMLElement {
     if (haCard) { haCard.style.overflowY = "hidden"; haCard.style.overflowX = "hidden"; }
     const a = sensor.attributes;
     const sid = a.series_id || "";
-    const color = (LIST_SERIES_META[sid] || {}).color || "#888";
+    const color = (window.GRIDSYNC_SERIES_META || {})[sid]?.color || "#888";
     const initials = (a.series_short || sid).substring(0, 3).toUpperCase();
     const now = new Date();
     const dateRange = this._fmtDateRange(a.start_date, a.end_date);
@@ -299,10 +291,11 @@ class GridSyncListCard extends HTMLElement {
 
     const sessions = Object.entries(a.sessions || {})
       .map(([k, v]) => ({
-        label: SESSION_LABELS[k] || k.replace(/_/g, " "),
-        dt: new Date(v),
-        past: new Date(v) < now
+        label: (window.GRIDSYNC_SESSION_LABELS || {})[k] || k.replace(/_/g, " "),
+        dt: this._sessionStart(v),
+        past: this._sessionStart(v) < now
       }))
+      .filter(s => s.dt !== null)
       .sort((a, b) => a.dt - b.dt);
 
     const sessionsHTML = sessions.map(s => {
@@ -359,7 +352,7 @@ class GridSyncListCard extends HTMLElement {
     const rows = sensors.map((s, i) => {
       const a = s.attributes;
       const sid = a.series_id || "";
-      const color = (LIST_SERIES_META[sid] || {}).color || "#888";
+      const color = (window.GRIDSYNC_SERIES_META || {})[sid]?.color || "#888";
       const initials = (a.series_short || sid).substring(0, 3).toUpperCase();
       const dateRange = this._fmtDateRange(a.start_date, a.end_date);
       const status = this._listRowStatus(a);

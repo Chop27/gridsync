@@ -12,7 +12,7 @@ A Home Assistant integration that tracks upcoming motorsport events across 13 se
 
 - 🏎️ **13 series** — F1, F2, F3, WEC, IndyCar, NASCAR, IMSA, WRC, NLS, Supercars, BTCC, GTWCE, ELMS
 - 📅 **One sensor per series** — next event, track, location, dates, full session schedule
-- ⏱️ **Live session detection** — pulsing LIVE badge with 90-minute session windows
+- ⏱️ **Live session detection** — pulsing LIVE badge with accurate session end times
 - 🔢 **Days filter** — hide events beyond a configurable number of days
 - 🌍 **Local time** — all session times shown in your browser timezone
 - 🃏 **3 Lovelace cards** — list card, iOS glass card, full schedule card
@@ -28,22 +28,30 @@ A Home Assistant integration that tracks upcoming motorsport events across 13 se
 
 ### Cards
 
-**Race Calendar List** | **Race Calendar Detail**
-:---:|:---:
-<img src="docs/card-list-view.png" width="300"/> | <img src="docs/card-detail-view.png" width="300"/>
+| Race Calendar (List) | Race Calendar (Detail) |
+|:---:|:---:|
+| <img src="docs/card-list-view.png" width="300"/> | <img src="docs/card-detail-view.png" width="300"/> |
 
-**Full Schedule Card** | **iOS Glass Card**
-:---:|:---:
-<img src="docs/card-default-view.png" width="300"/> | <img src="docs/card-ios-view.png" width="300"/>
+| Full Schedule Card | iOS Glass Card |
+|:---:|:---:|
+| <img src="docs/card-default-view.png" width="300"/> | <img src="docs/card-ios-view.png" width="300"/> |
+
+---
+
+## Requirements
+
+- Home Assistant 2026.3.0 or newer
+- No additional Python dependencies
+- Cards require manual resource registration (see below)
 
 ---
 
 ## Installation
 
-1. Copy `gridsync/` into `/config/custom_components/`
+1. Copy `custom_components/gridsync/` into `/config/custom_components/`
 2. Restart Home Assistant
 3. Create a `gridsync` folder in `/config/www/`
-4. Copy the card files from `www/gridsync/` into `/config/www/gridsync/`
+4. Copy the card files from `cards/` into `/config/www/gridsync/`
 5. Register resources (see Card Installation below)
 
 ---
@@ -65,13 +73,14 @@ Add each card you want to use as a Lovelace resource:
 
 **Settings → Dashboards → ⋮ → Resources → + Add Resource**
 
-| Card | File | URL |
-|------|------|-----|
-| List Card | `gridsync-list-card.js` | `/local/gridsync/gridsync-list-card.js` |
-| iOS Card | `gridsync-ios-card.js` | `/local/gridsync/gridsync-ios-card.js` |
-| Schedule Card | `gridsync-card.js` | `/local/gridsync/gridsync-card.js` |
+| Order | File | URL |
+|-------|------|-----|
+| 1st — required | `gridsync-data.js` | `/local/gridsync/gridsync-data.js` |
+| 2nd | `gridsync-list-card.js` | `/local/gridsync/gridsync-list-card.js` |
+| 3rd | `gridsync-ios-card.js` | `/local/gridsync/gridsync-ios-card.js` |
+| 4th | `gridsync-card.js` | `/local/gridsync/gridsync-card.js` |
 
-Type: **JavaScript module** for all three. Hard refresh your browser after adding (**Ctrl+Shift+R**).
+Type: **JavaScript module** for all. `gridsync-data.js` must load first — it provides shared colors and session labels to all cards. Hard refresh your browser after adding (**Ctrl+Shift+R**).
 
 ---
 
@@ -148,7 +157,7 @@ One sensor per selected series, e.g. `sensor.gridsync_formula_1`
 | `round` | Round number |
 | `start_date` | Event start `YYYY-MM-DD` |
 | `end_date` | Event end `YYYY-MM-DD` |
-| `sessions` | Dict of session name → UTC ISO datetime |
+| `sessions` | Dict of session name → `{start, end}` UTC ISO datetimes |
 | `days_until` | Days until event starts (0 = this weekend) |
 | `next_session` | Name of next upcoming session |
 | `next_session_time` | ISO datetime of next session |
@@ -182,7 +191,7 @@ One sensor per selected series, e.g. `sensor.gridsync_formula_1`
 | `wrc` | World Rally Championship | `#FFFFFF` |
 | `nls` | Nürburgring Langstrecken-Serie | `#067748` |
 | `supercars` | Supercars Championship | `#EE3123` |
-| `btcc` | British Touring Car Championship | `#020255` |
+| `btcc` | British Touring Car Championship | `#0012FF` |
 | `gtwce` | GT World Challenge Europe | `#E31E12` |
 | `elms` | European Le Mans Series | `#FF5F00` |
 
@@ -202,7 +211,7 @@ All session times must be in **UTC**.
 ```json
 {
   "version": "2026.2.0",
-  "last_updated": "2026-03-27",
+  "last_updated": "2026-04-04",
   "series": {
     "f1": {
       "name": "Formula 1",
@@ -211,19 +220,26 @@ All session times must be in **UTC**.
       "color": "#E10600",
       "events": [
         {
-          "round": 3,
-          "name": "Japanese Grand Prix",
-          "track": "Suzuka International Racing Course",
-          "location": "Suzuka, Japan",
-          "flag": "🇯🇵",
-          "start_date": "2026-03-27",
-          "end_date": "2026-03-29",
+          "round": 4,
+          "name": "Miami Grand Prix",
+          "track": "Miami International Autodrome",
+          "location": "Miami, USA",
+          "flag": "🇺🇸",
+          "start_date": "2026-05-01",
+          "end_date": "2026-05-03",
           "sessions": {
-            "practice1": "2026-03-27T02:30:00Z",
-            "practice2": "2026-03-27T06:00:00Z",
-            "practice3": "2026-03-28T02:30:00Z",
-            "qualifying": "2026-03-28T06:00:00Z",
-            "race": "2026-03-29T05:00:00Z"
+            "practice1": {
+              "start": "2026-05-01T16:30:00Z",
+              "end": "2026-05-01T17:30:00Z"
+            },
+            "qualifying": {
+              "start": "2026-05-02T20:00:00Z",
+              "end": "2026-05-02T21:00:00Z"
+            },
+            "race": {
+              "start": "2026-05-03T20:00:00Z",
+              "end": null
+            }
           }
         }
       ]
@@ -231,6 +247,8 @@ All session times must be in **UTC**.
   }
 }
 ```
+
+Sessions use `{start, end}` format. When `end` is `null`, the card uses fallback durations (90 min for most sessions, 180 min for races, whole day for WRC rally days).
 
 ---
 
@@ -256,11 +274,43 @@ automation:
 
 ---
 
+## Known Issues
+
+- **Session times are manually maintained** and may contain errors. If you spot an incorrect time, please [open a GitHub issue](https://github.com/Chop27/gridsync/issues).
+- **`gridsync-data.js` must be the first registered resource** — if colors or session names are missing, check the resource load order in Settings → Dashboards → Resources.
+
+---
+
 ## Pending
 
 - [ ] Remote schedule updates — fetch `motorsport_schedule.json` from a hosted URL so calendars update automatically without touching the integration. Planned: GitHub-hosted JSON with hourly fetch and local file fallback for offline use.
-- [ ] Improve session end time accuracy 
 - [ ] Series logos
+- [ ] MotoGP
+- [ ] WorldSBK (Superbikes)
+- [ ] HACS official submission
+
+---
+
+## Version History
+
+### v2.0.0-alpha *(current)*
+- Restructured repository for HACS compatibility — `custom_components/gridsync/` now at repo root
+- Sessions now use `{start, end}` object format for accurate live session end time tracking
+- Extracted shared series colors and session labels to `gridsync-data.js` — loaded once, used by all cards
+- Added 4 new series: Supercars Championship, BTCC, GT World Challenge Europe, ELMS (13 series total)
+- Fixed `color-mix()` CSS crash in all cards — not supported in HA webview
+- Fixed `const` redeclaration crash when multiple cards are loaded on the same dashboard
+- Improved list card live session logic — uses `min(session end, next session start)` for accurate window
+- WRC rally days (`day1`, `day2`, `day3`) remain live until midnight local time when `end` is null
+- All cards now sort series by time to next upcoming session
+
+### v1.0.0-alpha
+- Initial release
+- 9 series: F1, F2, F3, WEC, IndyCar, NASCAR, IMSA, WRC, NLS
+- 3 Lovelace cards: list card with slide-in detail, iOS glass widget, full schedule card
+- Days filter in config flow
+- Live session detection with client-side 10-second refresh timer
+- Hourly coordinator update, sensors excluded from HA recorder
 
 ---
 
@@ -275,4 +325,6 @@ MIT — see [LICENSE](LICENSE) for details.
 Pull requests welcome. To add a new series:
 1. Add it to `AVAILABLE_SERIES` and `SERIES_COLORS` in `const.py`
 2. Add its events to `motorsport_schedule.json`
-3. Add its color to `LIST_SERIES_META` in each card JS file
+3. Add its color and label to `gridsync-data.js`
+
+To report issues or incorrect session times: [GitHub Issues](https://github.com/Chop27/gridsync/issues)
