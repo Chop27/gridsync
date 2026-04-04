@@ -68,6 +68,12 @@ class GridSyncCoordinator(DataUpdateCoordinator):
         with open(schedule_path, encoding="utf-8") as f:
             return json.load(f)
 
+    def _session_start_str(self, session_val: Any) -> str | None:
+        """Extract start time string from session value — supports string or {start, end} dict."""
+        if isinstance(session_val, dict):
+            return session_val.get("start")
+        return session_val
+
     def _process_schedule(self, schedule: dict) -> dict[str, Any]:
         """Process schedule data and find next/current event for each selected series."""
         now = datetime.now(timezone.utc)
@@ -109,14 +115,12 @@ class GridSyncCoordinator(DataUpdateCoordinator):
             start_date = datetime.fromisoformat(start_date_str).date()
             end_date = datetime.fromisoformat(end_date_str).date()
 
-            # days_until: negative means we're in the weekend or past
             days_until = (start_date - today).days
             if today > end_date:
                 days_until = -1
             elif today >= start_date:
                 days_until = 0
 
-            # Apply days filter — skip if outside range (0 = no filter)
             if self.days_filter > 0 and days_until > self.days_filter:
                 continue
 
@@ -148,32 +152,26 @@ class GridSyncCoordinator(DataUpdateCoordinator):
     def _find_event(
         self, events: list, now: datetime, today: date
     ) -> tuple[dict, str] | None:
-        """
-        Find the relevant event:
-        - If we're in a weekend: return it (even if all sessions done, until midnight)
-        - After midnight past end_date: move to next
-        - Otherwise: next upcoming event
-        """
-        # Check if we're currently in a weekend
+        """Find the relevant event."""
         for event in events:
             start = datetime.fromisoformat(event["start_date"]).date()
             end = datetime.fromisoformat(event["end_date"]).date()
             if start <= today <= end:
-                # Check if all sessions are done
                 sessions = event.get("sessions", {})
                 all_done = all(
-                    datetime.fromisoformat(v).replace(tzinfo=timezone.utc) < now
+                    datetime.fromisoformat(
+                        self._session_start_str(v) or ""
+                    ).replace(tzinfo=timezone.utc) < now
                     for v in sessions.values()
+                    if self._session_start_str(v)
                 ) if sessions else False
 
                 if all_done:
-                    # Keep showing until midnight local — check if it's still today's end_date
                     if today <= end:
                         return event, "complete_today"
                     return None
                 return event, "active"
 
-        # Find next upcoming event
         future = [
             e for e in events
             if datetime.fromisoformat(e["end_date"]).date() >= today
@@ -193,14 +191,17 @@ class GridSyncCoordinator(DataUpdateCoordinator):
             return None, None
 
         upcoming = []
-        for session_name, session_time_str in sessions.items():
+        for session_name, session_val in sessions.items():
             try:
-                session_dt = datetime.fromisoformat(session_time_str)
+                start_str = self._session_start_str(session_val)
+                if not start_str:
+                    continue
+                session_dt = datetime.fromisoformat(start_str)
                 if session_dt.tzinfo is None:
                     session_dt = session_dt.replace(tzinfo=timezone.utc)
                 if session_dt > now:
                     upcoming.append((session_dt, session_name))
-            except (ValueError, TypeError):
+            except (ValueError, TypeError, KeyError):
                 continue
 
         if not upcoming:
