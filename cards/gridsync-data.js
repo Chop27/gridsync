@@ -39,6 +39,8 @@ window.GRIDSYNC_SESSION_LABELS = {
   qualifying_day1:  "Qualifying Day 1",
   qualifying_day2:  "Qualifying Day 2",
   qualifying_race:  "Qualifying Race",
+  qualifying_race1: "Qualifying Race 1",
+  qualifying_race2: "Qualifying Race 2",
   top_qualifying:   "Top Qualifying",
   // Sprint weekend
   sprint_qualifying: "Sprint Qualifying",

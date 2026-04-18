@@ -3,6 +3,8 @@
  * Requires gridsync-data.js loaded as a Lovelace resource before this file.
  */
 
+const _gs = () => window.GRIDSYNC_SERIES_META   || {};
+const _gl = () => window.GRIDSYNC_SESSION_LABELS || {};
 
 class GridSyncCard extends HTMLElement {
   constructor() {
@@ -55,8 +57,8 @@ class GridSyncCard extends HTMLElement {
     const sessions = a.sessions || {};
     // Next upcoming session time
     const upcoming = Object.values(sessions)
-      .map(v => new Date(typeof v === "object" && v !== null ? v.start : v))
-      .filter(d => !isNaN(d) && d > now)
+      .map(v => new Date(v))
+      .filter(d => d > now)
       .sort((a, b) => a - b);
     if (upcoming.length) return upcoming[0] - now;
     return (a.days_until ?? 999) * 86400000;
@@ -97,19 +99,14 @@ class GridSyncCard extends HTMLElement {
   _renderCard(sensor) {
     const a = sensor.state.attributes;
     const sid = a.series_id || "";
-    const meta = (window.GRIDSYNC_SERIES_META || {})[sid] || { label: sid.toUpperCase(), color: "#666", accent: "#888" };
+    const meta = (_gs())[sid] || { label: sid.toUpperCase(), color: "#666", accent: "#888" };
     const badge = this._daysLabel(a.days_until);
     const dateRange = this._fmtDateRange(a.start_date, a.end_date);
     const now = new Date();
 
     // All sessions — past ones faded, future ones normal
     const sessions = Object.entries(a.sessions || {})
-      .map(([k, v]) => {
-        const start = typeof v === "object" && v !== null ? v.start : v;
-        const dt = new Date(start);
-        return { label: (window.GRIDSYNC_SESSION_LABELS || {})[k] || k.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()), dt, past: dt < now };
-      })
-      .filter(s => !isNaN(s.dt))
+      .map(([k, v]) => ({ label: (_gl())[k] || k.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()), dt: new Date(v), past: new Date(v) < now }))
       .sort((a, b) => a.dt - b.dt);
 
     const sessionsHTML = sessions.length ? `
@@ -183,7 +180,7 @@ class GridSyncCard extends HTMLElement {
 
         .race-card.is-live {
           background: rgba(255,255,255,0.06);
-          box-shadow: 0 0 24px rgba(255,255,255,0.08);
+          box-shadow: 0 0 24px color-mix(in srgb, var(--c) 20%, transparent);
         }
 
         .card-glow {
@@ -203,7 +200,7 @@ class GridSyncCard extends HTMLElement {
           font-size: 11px; font-weight: 800;
           letter-spacing: 0.12em; text-transform: uppercase;
           color: var(--c);
-          background: rgba(255,255,255,0.08);
+          background: color-mix(in srgb, var(--c) 15%, transparent);
           padding: 2px 8px; border-radius: 4px;
         }
 
@@ -217,7 +214,7 @@ class GridSyncCard extends HTMLElement {
 
         .days-live {
           color: var(--c);
-          background: rgba(255,255,255,0.08);
+          background: color-mix(in srgb, var(--c) 15%, transparent);
           animation: pulse-badge 1.5s ease-in-out infinite;
         }
 

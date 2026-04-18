@@ -1,9 +1,23 @@
 /**
- * GridSync List Card v9.1
+ * GridSync List Card v9.2
  * Requires gridsync-data.js loaded as a Lovelace resource before this file.
  */
 
 
+
+
+function _hexToRgb(h) {
+  const n = parseInt(h.replace('#',''), 16);
+  return [n>>16&255, n>>8&255, n&255];
+}
+function _lighten(h) {
+  const [r,g,b] = _hexToRgb(h);
+  return 'rgb('+Math.min(255,r+40)+','+Math.min(255,g+40)+','+Math.min(255,b+40)+')';
+}
+function _darken(h) {
+  const [r,g,b] = _hexToRgb(h);
+  return 'rgb('+Math.max(0,r-50)+','+Math.max(0,g-50)+','+Math.max(0,b-50)+')';
+}
 
 class GridSyncListCard extends HTMLElement {
   constructor() {
@@ -232,7 +246,7 @@ class GridSyncListCard extends HTMLElement {
           : `<span>${rel || ""}</span>`;
         return {
           topRight: topText,
-          bottomRight: `<span style="color:rgba(255,255,255,0.4)">${next.label}</span>`
+          bottomRight: `<span style="color:rgba(255,255,255,0.25)">${next.label}</span>`
         };
       }
     }
@@ -323,7 +337,7 @@ class GridSyncListCard extends HTMLElement {
     detailContent.innerHTML = `
       <div class="detail-header">
         <span class="back-chevron">‹</span>
-        <div class="detail-badge" style="background:${color}22;border-color:${color}44;color:${color}">${initials}</div>
+        <div class="detail-badge" style="background:linear-gradient(135deg,${_lighten(color)} 0%,${color} 50%,${_darken(color)} 100%)">${(sid==="wrc"||sid==="nascar")?"<span style='color:#333'>"+initials+"</span>":initials}</div>
         <div class="detail-header-text">
           <div class="detail-event">${a.event_name || ""}</div>
           <div class="detail-sub">${a.track_name || ""} &nbsp;•&nbsp; ${dateRange}</div>
@@ -359,7 +373,7 @@ class GridSyncListCard extends HTMLElement {
 
       return `
         <div class="row" data-index="${i}">
-          <div class="badge" style="background:${color}22;border-color:${color}44;color:${color}">${initials}</div>
+          <div class="badge" style="background:linear-gradient(135deg,${_lighten(color)} 0%,${color} 50%,${_darken(color)} 100%)">${(sid==="wrc"||sid==="nascar")?"<span style='color:#333'>"+initials+"</span>":initials}</div>
           <div class="info">
             <div class="top">
               <span class="race">${a.event_name || ""}</span>
@@ -401,7 +415,7 @@ class GridSyncListCard extends HTMLElement {
 
           .row {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             gap: 10px;
             padding: 12px 5px;
             border-bottom: 1px solid rgba(255,255,255,0.2);
@@ -414,16 +428,34 @@ class GridSyncListCard extends HTMLElement {
 
           .badge {
             flex-shrink: 0;
-            width: 27px;
-            height: 27px;
-            border-radius: 6px;
-            border: 1px solid;
+            width: 28px;
+            height: 28px;
+            border-radius: 7px;
+            border: none !important;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-around;
             font-size: 8px;
             font-weight: 800;
             letter-spacing: 0.04em;
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            box-shadow:
+              inset 0.5px 0.5px 0px rgba(255,255,255,0.4),
+              inset 0 -0.5px 1px rgba(255,255,255,0.2),
+              0 2px 4px rgba(0,0,0,0.4);
+          }
+
+
+          .badge::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+            pointer-events: none;
+            z-index: 1;
           }
 
           .info { flex: 1; min-width: 0; line-height: 1; }
@@ -433,7 +465,7 @@ class GridSyncListCard extends HTMLElement {
             justify-content: space-between;
             align-items: center;
             gap: 0;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
           }
 
           .bottom {
@@ -466,6 +498,7 @@ class GridSyncListCard extends HTMLElement {
             margin-left: 8px;
             font-size: 11px;
             white-space: nowrap;
+            color: rgba(255,255,255,0.25);
           }
 
           .dates {
@@ -518,16 +551,38 @@ class GridSyncListCard extends HTMLElement {
 
           .detail-badge {
             flex-shrink: 0;
-            width: 32px;
-            height: 32px;
-            border-radius: 6px;
-            border: 1px solid;
+            width: 30px;
+            height: 30px;
+            border-radius: 7px;
+            border: none !important;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 9px;
+            justify-content: space-around;
+            font-size: 8px;
             font-weight: 800;
             letter-spacing: 0.04em;
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            box-shadow:
+              inset 0.5px 0.5px 0px rgba(255,255,255,0.4),
+              inset 0 -0.5px 1px rgba(255,255,255,0.2),
+              0 2px 4px rgba(0,0,0,0.4);
+          }
+
+          .detail-badge span {
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            z-index: 2;
+          }
+
+          .detail-badge::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+            pointer-events: none;
+            z-index: 1;
           }
 
           .detail-header-text { flex: 1; min-width: 0; text-align: left; }
@@ -538,11 +593,14 @@ class GridSyncListCard extends HTMLElement {
             color: rgba(255,255,255,0.95);
             line-height: 1.2;
             margin-bottom: 3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
           }
 
           .detail-sub {
             font-size: 11px;
-            color: rgba(255,255,255,0.4);
+            color: rgba(255,255,255,0.25);
             line-height: 1.3;
           }
 
