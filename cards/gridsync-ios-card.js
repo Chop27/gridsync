@@ -1,5 +1,5 @@
 /**
- * GridSync iOS26 Card v2.1
+ * GridSync iOS26 Card v2.2
  * Apple-style liquid glass widget for motorsport events
  * Requires gridsync-data.js loaded as a Lovelace resource before this file.
  */
@@ -91,29 +91,74 @@ class GridSyncIosCard extends HTMLElement {
     return `In ${days} days`;
   }
 
+
+  _sessionStart(v) {
+    const raw = (typeof v === "object" && v !== null) ? v.start : v;
+    return raw ? new Date(raw) : null;
+  }
+
+  _sessionEnd(key, v, nextStart) {
+    if (typeof v === "object" && v !== null && v.end) return new Date(v.end);
+    const wrcDays = ["day1", "day2", "day3"];
+    if (wrcDays.includes(key)) return null;
+    const fallbacks = {
+      race: 180, race1: 180, race2: 180, race3: 180,
+      qualifying_race: 240, carb_day: 300, test_day: 360,
+    };
+    const mins = fallbacks[key] !== undefined ? fallbacks[key] : 90;
+    const start = this._sessionStart(v);
+    return start ? new Date(start.getTime() + mins * 60 * 1000) : null;
+  }
+
+  _getLiveSession(sessions) {
+    const now = new Date();
+    const sorted = Object.entries(sessions || {})
+      .map(([k, v]) => ({ key: k, label: (window.GRIDSYNC_SESSION_LABELS || {})[k] || k, dt: this._sessionStart(v), raw: v }))
+      .filter(s => s.dt !== null)
+      .sort((a, b) => a.dt - b.dt);
+    const wrcDays = ["day1", "day2", "day3"];
+    for (let i = 0; i < sorted.length; i++) {
+      const s = sorted[i];
+      if (now < s.dt) continue;
+      if (wrcDays.includes(s.key)) {
+        const midnight = new Date(s.dt);
+        midnight.setHours(23, 59, 59, 999);
+        if (now <= midnight) return s;
+        continue;
+      }
+      const next = sorted[i + 1];
+      const endDt = this._sessionEnd(s.key, s.raw, next ? next.dt : null);
+      if (!endDt) continue;
+      const effectiveEnd = next ? new Date(Math.min(next.dt, endDt)) : endDt;
+      if (now < effectiveEnd) return s;
+    }
+    return null;
+  }
   _renderSlide(sensor) {
     const a = sensor.state.attributes;
     const sid = a.series_id || "";
     const meta = (window.GRIDSYNC_SERIES_META || {})[sid] || { label: sid.toUpperCase(), color: "#FFF", bg: "rgba(255,255,255,0.12)" };
     const days = a.days_until;
-    const isLive = days === 0;
+    const liveSession = this._getLiveSession(a.sessions || {});
+    const isLive = !!liveSession;
     const dateRange = this._fmtDateRange(a.start_date, a.end_date);
     const now = new Date();
 
-    // All sessions — past faded
+    // All sessions — past faded, live highlighted
     const sessions = Object.entries(a.sessions || {})
       .map(([k, v]) => {
         const start = typeof v === "object" && v !== null ? v.start : v;
         const dt = new Date(start);
-        return { label: (window.GRIDSYNC_SESSION_LABELS || {})[k] || k, dt, past: dt < now };
+        const isSessionLive = liveSession && liveSession.key === k;
+        return { key: k, label: (window.GRIDSYNC_SESSION_LABELS || {})[k] || k.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()), dt, past: dt < now && !isSessionLive, isLive: isSessionLive };
       })
       .filter(s => !isNaN(s.dt))
       .sort((a, b) => a.dt - b.dt);
 
     const sessionsHTML = sessions.map(s => `
-      <div class="session-row ${s.past ? "past" : ""}">
-        <span class="session-label">${s.label}</span>
-        <span class="session-time">${this._fmtSessionTime(s.dt.toISOString())}</span>
+      <div class="session-row ${s.past ? "past" : s.isLive ? "live-session" : ""}">
+        <span class="session-label ${s.isLive ? "live-label" : ""}">${s.label}</span>
+        <span class="session-time ${s.isLive ? "live-time" : ""}">${s.isLive ? "● LIVE" : this._fmtSessionTime(s.dt.toISOString())}</span>
       </div>`).join("");
 
     return `
@@ -317,12 +362,14 @@ class GridSyncIosCard extends HTMLElement {
 
         .session-label {
           font-size: 11px; font-weight: 600;
-          color: var(--sc); opacity: 0.9;
+          color: rgba(255,255,255,0.5); opacity: 1;
         }
+        .session-label.live-label { color: #FF3B30; opacity: 1; }
 
         .session-time {
-          font-size: 11px; color: rgba(255,255,255,0.5);
+          font-size: 11px; color: rgba(255,255,255,0.9);
         }
+        .session-time.live-time { color: #FF3B30; font-weight: 700; }
 
         .nav-section {
           display: flex; align-items: center;
@@ -408,13 +455,15 @@ class GridSyncIosCard extends HTMLElement {
   }
 }
 
-customElements.define("gridsync-ios-card", GridSyncIosCard);
-window.customCards = window.customCards || [];
+if (!customElements.get("gridsync-ios-card")) {
+  customElements.define("gridsync-ios-card", GridSyncIosCard);
+  window.customCards = window.customCards || [];
 window.customCards.push({
   type: "gridsync-ios-card",
   name: "GridSync iOS26 Card",
   description: "Apple-style liquid glass motorsport widget.",
 });
-console.info("%c GRIDSYNC iOS %c v2.1 ",
+  console.info("%c GRIDSYNC iOS %c v2.2 ",
   "background:#0072BC;color:#fff;font-weight:700;padding:2px 6px;border-radius:4px 0 0 4px",
   "background:#1c1c1e;color:#aaa;padding:2px 6px;border-radius:0 4px 4px 0");
+}

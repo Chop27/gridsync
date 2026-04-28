@@ -1,5 +1,5 @@
 /**
- * GridSync Motorsport Card v3.1
+ * GridSync Motorsport Card v3.2
  * Requires gridsync-data.js loaded as a Lovelace resource before this file.
  */
 
@@ -54,11 +54,11 @@ class GridSyncCard extends HTMLElement {
   _sortKey(sensor) {
     const a = sensor.attributes;
     const now = new Date();
-    const sessions = a.sessions || {};
-    // Next upcoming session time
-    const upcoming = Object.values(sessions)
-      .map(v => new Date(v))
-      .filter(d => d > now)
+    const live = this._getLiveSession(a.sessions || {});
+    if (live) return 0;
+    const upcoming = Object.values(a.sessions || {})
+      .map(v => { const raw = (typeof v === "object" && v !== null) ? v.start : v; return raw ? new Date(raw) : null; })
+      .filter(d => d && d > now)
       .sort((a, b) => a - b);
     if (upcoming.length) return upcoming[0] - now;
     return (a.days_until ?? 999) * 86400000;
@@ -96,6 +96,49 @@ class GridSyncCard extends HTMLElement {
     return { text: `${days}D`, live: false };
   }
 
+
+  _sessionStart(v) {
+    const raw = (typeof v === "object" && v !== null) ? v.start : v;
+    return raw ? new Date(raw) : null;
+  }
+
+  _sessionEnd(key, v, nextStart) {
+    if (typeof v === "object" && v !== null && v.end) return new Date(v.end);
+    const wrcDays = ["day1", "day2", "day3"];
+    if (wrcDays.includes(key)) return null;
+    const fallbacks = {
+      race: 180, race1: 180, race2: 180, race3: 180,
+      qualifying_race: 240, carb_day: 300, test_day: 360,
+    };
+    const mins = fallbacks[key] !== undefined ? fallbacks[key] : 90;
+    const start = this._sessionStart(v);
+    return start ? new Date(start.getTime() + mins * 60 * 1000) : null;
+  }
+
+  _getLiveSession(sessions) {
+    const now = new Date();
+    const sorted = Object.entries(sessions || {})
+      .map(([k, v]) => ({ key: k, label: (window.GRIDSYNC_SESSION_LABELS || {})[k] || k, dt: this._sessionStart(v), raw: v }))
+      .filter(s => s.dt !== null)
+      .sort((a, b) => a.dt - b.dt);
+    const wrcDays = ["day1", "day2", "day3"];
+    for (let i = 0; i < sorted.length; i++) {
+      const s = sorted[i];
+      if (now < s.dt) continue;
+      if (wrcDays.includes(s.key)) {
+        const midnight = new Date(s.dt);
+        midnight.setHours(23, 59, 59, 999);
+        if (now <= midnight) return s;
+        continue;
+      }
+      const next = sorted[i + 1];
+      const endDt = this._sessionEnd(s.key, s.raw, next ? next.dt : null);
+      if (!endDt) continue;
+      const effectiveEnd = next ? new Date(Math.min(next.dt, endDt)) : endDt;
+      if (now < effectiveEnd) return s;
+    }
+    return null;
+  }
   _renderCard(sensor) {
     const a = sensor.state.attributes;
     const sid = a.series_id || "";
@@ -105,16 +148,23 @@ class GridSyncCard extends HTMLElement {
     const now = new Date();
 
     // All sessions — past ones faded, future ones normal
+    const liveSession = this._getLiveSession(a.sessions || {});
     const sessions = Object.entries(a.sessions || {})
-      .map(([k, v]) => ({ label: (_gl())[k] || k.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()), dt: new Date(v), past: new Date(v) < now }))
+      .map(([k, v]) => {
+        const start = (typeof v === "object" && v !== null) ? v.start : v;
+        const dt = new Date(start);
+        const isLive = liveSession && liveSession.key === k;
+        return { key: k, label: (_gl())[k] || k.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()), dt, past: dt < now && !isLive, isLive };
+      })
+      .filter(s => !isNaN(s.dt))
       .sort((a, b) => a.dt - b.dt);
 
     const sessionsHTML = sessions.length ? `
       <div class="sessions">
         ${sessions.map(s => `
-          <div class="session ${s.past ? "past" : ""}">
+          <div class="session ${s.past ? "past" : s.isLive ? "is-live-session" : ""}">
             <span class="s-label">${s.label}</span>
-            <span class="s-time">${this._fmtSession(s.dt.toISOString())}</span>
+            <span class="s-time ${s.isLive ? "live-time" : ""}">${s.isLive ? "LIVE" : this._fmtSession(s.dt.toISOString())}</span>
           </div>`).join("")}
       </div>` : "";
 
@@ -251,10 +301,13 @@ class GridSyncCard extends HTMLElement {
           font-family: 'Barlow Condensed', sans-serif;
           font-size: 9px; font-weight: 700;
           letter-spacing: 0.1em; text-transform: uppercase;
-          color: var(--a); opacity: 0.9;
+          color: rgba(255,255,255,0.5);
+          opacity: 1;
         }
 
-        .s-time { font-size: 11px; color: rgba(255,255,255,0.55); }
+        .s-time { font-size: 11px; color: rgba(255,255,255,0.5); }
+        .s-time.live-time { color: #FF3B30; font-weight: 700; }
+        .session.is-live-session .s-label { color: #FF3B30; opacity: 1; }
 
         .live-bar {
           margin-top: 10px;
@@ -297,7 +350,7 @@ if (!customElements.get("gridsync-card")) {
     name: "GridSync Motorsport Card",
     description: "Upcoming motorsport events from GridSync.",
   });
-  console.info("%c GRIDSYNC %c v3.1 ",
+  console.info("%c GRIDSYNC %c v3.2 ",
     "background:#E10600;color:#fff;font-weight:700;padding:2px 6px;border-radius:4px 0 0 4px",
     "background:#111318;color:#aaa;padding:2px 6px;border-radius:0 4px 4px 0");
 }

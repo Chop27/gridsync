@@ -21,7 +21,7 @@ window.GRIDSYNC_SERIES_META = {
   supercars: { label: "Supercars", color: "#EE3123", bg: "rgba(238,49,35,0.18)",     accent: "#FF5544" },
   btcc:      { label: "BTCC",      color: "#0012FF", bg: "rgba(0,18,255,0.18)",      accent: "#3355FF" },
   gtwce:     { label: "GTWCE",     color: "#E31E12", bg: "rgba(227,30,18,0.18)",     accent: "#FF4444" },
-  elms:      { label: "ELMS",      color: "#FF5F00", bg: "rgba(255,95,0,0.18)",      accent: "#FF8833" },
+  elms:      { label: "ELMS",      color: "#10004d", bg: "rgba(14, 1, 66, 0.18)",       accent: "#32285A" },
 };
 
 window.GRIDSYNC_SESSION_LABELS = {
