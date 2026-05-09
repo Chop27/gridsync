@@ -1,0 +1,26 @@
+# Environment variables — never commit
+tools/.env
+.env
+
+# Node
+tools/node_modules/
+node_modules/
+tools/package-lock.json
+
+# Logs
+*.log
+tools/*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# HA dev
+.storage/
+home-assistant.log
