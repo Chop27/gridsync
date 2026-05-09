@@ -385,22 +385,17 @@
           "track": "Indianapolis Motor Speedway Road Course",
           "location": "Indianapolis, USA",
           "flag": "🇺🇸",
-          "start_date": "2026-05-08",
+          "start_date": "2026-05-09",
           "end_date": "2026-05-09",
           "sessions": {
-            "practice1": {
-              "start": "2026-05-08T13:00:00Z",
-              "end": "2026-05-08T14:00:00Z"
+            "qualifying1": {
+              "start": "2026-05-09T14:30:00Z",
+              "end": "2026-05-09T15:06:00Z"
             },
-            "practice2": {
-              "start": "2026-05-08T17:00:00Z",
-              "end": "2026-05-08T18:00:00Z"
+            "qualifying2": {
+              "start": "2026-05-09T15:30:00Z",
+              "end": "2026-05-09T16:06:00Z"
             },
-            "qualifying": {
-              "start": "2026-05-08T21:30:00Z",
-              "end": "2026-05-08T22:06:00Z"
-            },
-            "warmup": { "start": "2026-05-09T15:30:00Z", "end": null },
             "race": { "start": "2026-05-09T20:30:00Z", "end": null }
           }
         },
