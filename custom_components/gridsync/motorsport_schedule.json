@@ -1,6 +1,6 @@
 {
-  "version": "2026.4.5",
-  "last_updated": "2026-04-28",
+  "version": "2026.5.26",
+  "last_updated": "2026-05-26",
   "series": {
     "f1": {
       "name": "Formula 1",
@@ -9,63 +9,7 @@
       "color": "#E10600",
       "events": [
         {
-          "round": 4,
-          "name": "Miami Grand Prix",
-          "track": "Miami International Autodrome",
-          "location": "Miami, USA",
-          "flag": "🇺🇸",
-          "start_date": "2026-05-01",
-          "end_date": "2026-05-03",
-          "sessions": {
-            "practice1": {
-              "start": "2026-05-01T16:30:00Z",
-              "end": "2026-05-01T17:30:00Z"
-            },
-            "sprint_qualifying": {
-              "start": "2026-05-01T20:30:00Z",
-              "end": "2026-05-01T21:15:00Z"
-            },
-            "sprint": {
-              "start": "2026-05-02T16:00:00Z",
-              "end": "2026-05-02T17:00:00Z"
-            },
-            "qualifying": {
-              "start": "2026-05-02T20:00:00Z",
-              "end": "2026-05-02T21:00:00Z"
-            },
-            "race": { "start": "2026-05-03T20:00:00Z", "end": null }
-          }
-        },
-        {
-          "round": 7,
-          "name": "Canadian Grand Prix",
-          "track": "Circuit Gilles Villeneuve",
-          "location": "Montreal, Canada",
-          "flag": "🇨🇦",
-          "start_date": "2026-05-22",
-          "end_date": "2026-05-24",
-          "sessions": {
-            "practice1": {
-              "start": "2026-05-22T14:30:00Z",
-              "end": "2026-05-22T15:30:00Z"
-            },
-            "sprint_qualifying": {
-              "start": "2026-05-22T18:30:00Z",
-              "end": "2026-05-22T19:14:00Z"
-            },
-            "sprint": {
-              "start": "2026-05-23T14:00:00Z",
-              "end": "2026-05-23T15:00:00Z"
-            },
-            "qualifying": {
-              "start": "2026-05-23T18:00:00Z",
-              "end": "2026-05-23T19:00:00Z"
-            },
-            "race": { "start": "2026-05-24T18:00:00Z", "end": null }
-          }
-        },
-        {
-          "round": 8,
+          "round": 6,
           "name": "Monaco Grand Prix",
           "track": "Circuit de Monaco",
           "location": "Monte Carlo, Monaco",
@@ -73,23 +17,43 @@
           "start_date": "2026-06-05",
           "end_date": "2026-06-07",
           "sessions": {
-            "practice1": {
-              "start": "2026-06-05T11:30:00Z",
-              "end": "2026-06-05T12:30:00Z"
-            },
-            "practice2": {
-              "start": "2026-06-05T15:00:00Z",
-              "end": "2026-06-05T16:00:00Z"
-            },
-            "practice3": {
-              "start": "2026-06-06T10:30:00Z",
-              "end": "2026-06-06T11:30:00Z"
-            },
-            "qualifying": {
-              "start": "2026-06-06T14:00:00Z",
-              "end": "2026-06-06T15:00:00Z"
-            },
+            "practice1": { "start": "2026-06-05T11:30:00Z", "end": "2026-06-05T12:30:00Z" },
+            "practice2": { "start": "2026-06-05T15:00:00Z", "end": "2026-06-05T16:00:00Z" },
+            "practice3": { "start": "2026-06-06T10:30:00Z", "end": "2026-06-06T11:30:00Z" },
+            "qualifying": { "start": "2026-06-06T14:00:00Z", "end": "2026-06-06T15:00:00Z" },
             "race": { "start": "2026-06-07T13:00:00Z", "end": null }
+          }
+        },
+        {
+          "round": 7,
+          "name": "Spanish Grand Prix",
+          "track": "Circuit de Barcelona-Catalunya",
+          "location": "Barcelona, Spain",
+          "flag": "🇪🇸",
+          "start_date": "2026-06-12",
+          "end_date": "2026-06-14",
+          "sessions": {
+            "practice1": { "start": "2026-06-12T12:30:00Z", "end": "2026-06-12T13:30:00Z" },
+            "practice2": { "start": "2026-06-12T16:00:00Z", "end": "2026-06-12T17:00:00Z" },
+            "practice3": { "start": "2026-06-13T11:30:00Z", "end": "2026-06-13T12:30:00Z" },
+            "qualifying": { "start": "2026-06-13T15:00:00Z", "end": "2026-06-13T16:00:00Z" },
+            "race": { "start": "2026-06-14T14:00:00Z", "end": null }
+          }
+        },
+        {
+          "round": 8,
+          "name": "Austrian Grand Prix",
+          "track": "Red Bull Ring",
+          "location": "Spielberg, Austria",
+          "flag": "🇦🇹",
+          "start_date": "2026-06-26",
+          "end_date": "2026-06-28",
+          "sessions": {
+            "practice1": { "start": "2026-06-26T12:30:00Z", "end": "2026-06-26T13:30:00Z" },
+            "practice2": { "start": "2026-06-26T16:00:00Z", "end": "2026-06-26T17:00:00Z" },
+            "practice3": { "start": "2026-06-27T11:30:00Z", "end": "2026-06-27T12:30:00Z" },
+            "qualifying": { "start": "2026-06-27T15:00:00Z", "end": "2026-06-27T16:00:00Z" },
+            "race": { "start": "2026-06-28T14:00:00Z", "end": null }
           }
         }
       ]
@@ -109,14 +73,8 @@
           "start_date": "2026-06-05",
           "end_date": "2026-06-07",
           "sessions": {
-            "qualifying": {
-              "start": "2026-06-05T13:00:00Z",
-              "end": "2026-06-05T13:30:00Z"
-            },
-            "sprint_race": {
-              "start": "2026-06-06T10:30:00Z",
-              "end": "2026-06-06T11:15:00Z"
-            },
+            "qualifying": { "start": "2026-06-05T13:00:00Z", "end": "2026-06-05T13:30:00Z" },
+            "sprint_race": { "start": "2026-06-06T10:30:00Z", "end": "2026-06-06T11:15:00Z" },
             "feature_race": { "start": "2026-06-07T10:05:00Z", "end": null }
           }
         },
@@ -129,14 +87,8 @@
           "start_date": "2026-06-12",
           "end_date": "2026-06-14",
           "sessions": {
-            "qualifying": {
-              "start": "2026-06-12T13:00:00Z",
-              "end": "2026-06-12T13:30:00Z"
-            },
-            "sprint_race": {
-              "start": "2026-06-13T10:30:00Z",
-              "end": "2026-06-13T11:15:00Z"
-            },
+            "qualifying": { "start": "2026-06-12T13:00:00Z", "end": "2026-06-12T13:30:00Z" },
+            "sprint_race": { "start": "2026-06-13T10:30:00Z", "end": "2026-06-13T11:15:00Z" },
             "feature_race": { "start": "2026-06-14T10:05:00Z", "end": null }
           }
         },
@@ -149,14 +101,8 @@
           "start_date": "2026-06-26",
           "end_date": "2026-06-28",
           "sessions": {
-            "qualifying": {
-              "start": "2026-06-26T13:00:00Z",
-              "end": "2026-06-26T13:30:00Z"
-            },
-            "sprint_race": {
-              "start": "2026-06-27T10:30:00Z",
-              "end": "2026-06-27T11:15:00Z"
-            },
+            "qualifying": { "start": "2026-06-26T13:00:00Z", "end": "2026-06-26T13:30:00Z" },
+            "sprint_race": { "start": "2026-06-27T10:30:00Z", "end": "2026-06-27T11:15:00Z" },
             "feature_race": { "start": "2026-06-28T10:05:00Z", "end": null }
           }
         }
@@ -169,7 +115,7 @@
       "color": "#676767",
       "events": [
         {
-          "round": 3,
+          "round": 2,
           "name": "Monaco F3",
           "track": "Circuit de Monaco",
           "location": "Monte Carlo, Monaco",
@@ -177,19 +123,13 @@
           "start_date": "2026-06-05",
           "end_date": "2026-06-07",
           "sessions": {
-            "qualifying": {
-              "start": "2026-06-05T09:35:00Z",
-              "end": "2026-06-05T10:05:00Z"
-            },
-            "sprint_race": {
-              "start": "2026-06-06T08:35:00Z",
-              "end": "2026-06-06T09:20:00Z"
-            },
+            "qualifying": { "start": "2026-06-05T09:35:00Z", "end": "2026-06-05T10:05:00Z" },
+            "sprint_race": { "start": "2026-06-06T08:35:00Z", "end": "2026-06-06T09:20:00Z" },
             "feature_race": { "start": "2026-06-07T08:05:00Z", "end": null }
           }
         },
         {
-          "round": 4,
+          "round": 3,
           "name": "Barcelona F3",
           "track": "Circuit de Barcelona-Catalunya",
           "location": "Barcelona, Spain",
@@ -197,19 +137,13 @@
           "start_date": "2026-06-12",
           "end_date": "2026-06-14",
           "sessions": {
-            "qualifying": {
-              "start": "2026-06-12T09:35:00Z",
-              "end": "2026-06-12T10:05:00Z"
-            },
-            "sprint_race": {
-              "start": "2026-06-13T08:35:00Z",
-              "end": "2026-06-13T09:20:00Z"
-            },
+            "qualifying": { "start": "2026-06-12T09:35:00Z", "end": "2026-06-12T10:05:00Z" },
+            "sprint_race": { "start": "2026-06-13T08:35:00Z", "end": "2026-06-13T09:20:00Z" },
             "feature_race": { "start": "2026-06-14T08:05:00Z", "end": null }
           }
         },
         {
-          "round": 5,
+          "round": 4,
           "name": "Spielberg F3",
           "track": "Red Bull Ring",
           "location": "Spielberg, Austria",
@@ -217,14 +151,8 @@
           "start_date": "2026-06-26",
           "end_date": "2026-06-28",
           "sessions": {
-            "qualifying": {
-              "start": "2026-06-26T09:35:00Z",
-              "end": "2026-06-26T10:05:00Z"
-            },
-            "sprint_race": {
-              "start": "2026-06-27T08:35:00Z",
-              "end": "2026-06-27T09:20:00Z"
-            },
+            "qualifying": { "start": "2026-06-26T09:35:00Z", "end": "2026-06-26T10:05:00Z" },
+            "sprint_race": { "start": "2026-06-27T08:35:00Z", "end": "2026-06-27T09:20:00Z" },
             "feature_race": { "start": "2026-06-28T08:05:00Z", "end": null }
           }
         }
@@ -237,42 +165,6 @@
       "color": "#E0E0E0",
       "events": [
         {
-          "round": 5,
-          "name": "Rally Islas Canarias",
-          "track": "Varies",
-          "location": "Las Palmas, Spain",
-          "flag": "🇪🇸",
-          "start_date": "2026-04-23",
-          "end_date": "2026-04-26",
-          "sessions": {
-            "shakedown": {
-              "start": "2026-04-23T09:00:00Z",
-              "end": "2026-04-23T12:00:00Z"
-            },
-            "day1": { "start": "2026-04-24T08:00:00Z", "end": null },
-            "day2": { "start": "2026-04-25T07:30:00Z", "end": null },
-            "day3": { "start": "2026-04-26T07:00:00Z", "end": null }
-          }
-        },
-        {
-          "round": 6,
-          "name": "Vodafone Rally de Portugal",
-          "track": "Varies",
-          "location": "Matosinhos, Portugal",
-          "flag": "🇵🇹",
-          "start_date": "2026-05-07",
-          "end_date": "2026-05-10",
-          "sessions": {
-            "shakedown": {
-              "start": "2026-05-07T09:00:00Z",
-              "end": "2026-05-07T12:00:00Z"
-            },
-            "day1": { "start": "2026-05-08T08:00:00Z", "end": null },
-            "day2": { "start": "2026-05-09T07:30:00Z", "end": null },
-            "day3": { "start": "2026-05-10T07:00:00Z", "end": null }
-          }
-        },
-        {
           "round": 7,
           "name": "Rally Japan",
           "track": "Varies",
@@ -281,13 +173,40 @@
           "start_date": "2026-05-28",
           "end_date": "2026-05-31",
           "sessions": {
-            "shakedown": {
-              "start": "2026-05-28T02:00:00Z",
-              "end": "2026-05-28T05:00:00Z"
-            },
+            "shakedown": { "start": "2026-05-28T02:00:00Z", "end": "2026-05-28T05:00:00Z" },
             "day1": { "start": "2026-05-29T00:00:00Z", "end": null },
             "day2": { "start": "2026-05-30T00:00:00Z", "end": null },
             "day3": { "start": "2026-05-31T00:00:00Z", "end": null }
+          }
+        },
+        {
+          "round": 8,
+          "name": "Acropolis Rally Greece",
+          "track": "Varies",
+          "location": "Loutraki, Greece",
+          "flag": "🇬🇷",
+          "start_date": "2026-06-25",
+          "end_date": "2026-06-28",
+          "sessions": {
+            "shakedown": { "start": "2026-06-25T07:00:00Z", "end": "2026-06-25T10:00:00Z" },
+            "day1": { "start": "2026-06-26T07:00:00Z", "end": null },
+            "day2": { "start": "2026-06-27T07:00:00Z", "end": null },
+            "day3": { "start": "2026-06-28T07:00:00Z", "end": null }
+          }
+        },
+        {
+          "round": 9,
+          "name": "Rally Estonia",
+          "track": "Varies",
+          "location": "Tartu, Estonia",
+          "flag": "🇪🇪",
+          "start_date": "2026-07-16",
+          "end_date": "2026-07-19",
+          "sessions": {
+            "shakedown": { "start": "2026-07-16T07:00:00Z", "end": "2026-07-16T10:00:00Z" },
+            "day1": { "start": "2026-07-17T07:00:00Z", "end": null },
+            "day2": { "start": "2026-07-18T07:00:00Z", "end": null },
+            "day3": { "start": "2026-07-19T07:00:00Z", "end": null }
           }
         }
       ]
@@ -299,29 +218,6 @@
       "color": "#00B9FF",
       "events": [
         {
-          "round": 2,
-          "name": "6 Hours of Spa-Francorchamps",
-          "track": "Circuit de Spa-Francorchamps",
-          "location": "Spa, Belgium",
-          "flag": "🇧🇪",
-          "start_date": "2026-05-07",
-          "end_date": "2026-05-09",
-          "sessions": {
-            "qualifying": {
-              "start": "2026-05-08T13:25:00Z",
-              "end": "2026-05-08T14:30:00Z"
-            },
-            "hyperpole": {
-              "start": "2026-05-08T13:48:00Z",
-              "end": "2026-05-08T14:08:00Z"
-            },
-            "race": {
-              "start": "2026-05-09T12:00:00Z",
-              "end": "2026-05-09T18:00:00Z"
-            }
-          }
-        },
-        {
           "round": 4,
           "name": "24 Hours of Le Mans",
           "track": "Circuit de la Sarthe",
@@ -330,26 +226,11 @@
           "start_date": "2026-06-10",
           "end_date": "2026-06-14",
           "sessions": {
-            "qualifying": {
-              "start": "2026-06-10T18:30:00Z",
-              "end": "2026-06-10T20:00:00Z"
-            },
-            "hyperpole1": {
-              "start": "2026-06-11T18:00:00Z",
-              "end": "2026-06-11T18:20:00Z"
-            },
-            "hyperpole2": {
-              "start": "2026-06-11T18:40:00Z",
-              "end": "2026-06-11T19:00:00Z"
-            },
-            "warmup": {
-              "start": "2026-06-13T10:00:00Z",
-              "end": "2026-06-13T10:15:00Z"
-            },
-            "race": {
-              "start": "2026-06-13T14:00:00Z",
-              "end": "2026-06-14T14:00:00Z"
-            }
+            "qualifying": { "start": "2026-06-10T18:30:00Z", "end": "2026-06-10T20:00:00Z" },
+            "hyperpole1": { "start": "2026-06-11T18:00:00Z", "end": "2026-06-11T18:20:00Z" },
+            "hyperpole2": { "start": "2026-06-11T18:40:00Z", "end": "2026-06-11T19:00:00Z" },
+            "warmup": { "start": "2026-06-13T10:00:00Z", "end": "2026-06-13T10:15:00Z" },
+            "race": { "start": "2026-06-13T14:00:00Z", "end": "2026-06-14T14:00:00Z" }
           }
         },
         {
@@ -361,14 +242,21 @@
           "start_date": "2026-07-10",
           "end_date": "2026-07-12",
           "sessions": {
-            "qualifying": {
-              "start": "2026-07-11T20:00:00Z",
-              "end": "2026-07-11T21:30:00Z"
-            },
-            "race": {
-              "start": "2026-07-12T16:00:00Z",
-              "end": "2026-07-12T22:00:00Z"
-            }
+            "qualifying": { "start": "2026-07-11T20:00:00Z", "end": "2026-07-11T21:30:00Z" },
+            "race": { "start": "2026-07-12T16:00:00Z", "end": "2026-07-12T22:00:00Z" }
+          }
+        },
+        {
+          "round": 6,
+          "name": "Lone Star Le Mans",
+          "track": "Circuit of the Americas",
+          "location": "Austin, USA",
+          "flag": "🇺🇸",
+          "start_date": "2026-09-04",
+          "end_date": "2026-09-06",
+          "sessions": {
+            "qualifying": { "start": "2026-09-05T20:00:00Z", "end": "2026-09-05T21:30:00Z" },
+            "race": { "start": "2026-09-06T17:00:00Z", "end": "2026-09-06T23:00:00Z" }
           }
         }
       ]
@@ -380,43 +268,6 @@
       "color": "#0072BC",
       "events": [
         {
-          "round": 6,
-          "name": "Sonsio Grand Prix",
-          "track": "Indianapolis Motor Speedway Road Course",
-          "location": "Indianapolis, USA",
-          "flag": "🇺🇸",
-          "start_date": "2026-05-09",
-          "end_date": "2026-05-09",
-          "sessions": {
-            "qualifying1": {
-              "start": "2026-05-09T14:30:00Z",
-              "end": "2026-05-09T15:06:00Z"
-            },
-            "qualifying2": {
-              "start": "2026-05-09T15:30:00Z",
-              "end": "2026-05-09T16:06:00Z"
-            },
-            "race": { "start": "2026-05-09T20:30:00Z", "end": null }
-          }
-        },
-        {
-          "round": 7,
-          "name": "110th Indianapolis 500",
-          "track": "Indianapolis Motor Speedway",
-          "location": "Indianapolis, USA",
-          "flag": "🇺🇸",
-          "start_date": "2026-05-12",
-          "end_date": "2026-05-24",
-          "sessions": {
-            "qualifying_day1": { "start": "2026-05-16T15:00:00Z", "end": null },
-            "qualifying_day2": {
-              "start": "2026-05-17T20:00:00Z",
-              "end": "2026-05-17T21:30:00Z"
-            },
-            "race": { "start": "2026-05-24T16:45:00Z", "end": null }
-          }
-        },
-        {
           "round": 8,
           "name": "Chevrolet Detroit Grand Prix",
           "track": "Streets of Detroit",
@@ -425,27 +276,34 @@
           "start_date": "2026-05-29",
           "end_date": "2026-05-31",
           "sessions": {
-            "qualifying": {
-              "start": "2026-05-30T20:00:00Z",
-              "end": "2026-05-30T21:00:00Z"
-            },
+            "qualifying": { "start": "2026-05-30T20:00:00Z", "end": "2026-05-30T21:00:00Z" },
             "race": { "start": "2026-05-31T17:00:00Z", "end": null }
           }
         },
         {
           "round": 9,
-          "name": "Road America",
+          "name": "XPEL Grand Prix at Road America",
           "track": "Road America",
           "location": "Elkhart Lake, USA",
           "flag": "🇺🇸",
           "start_date": "2026-06-20",
           "end_date": "2026-06-21",
           "sessions": {
-            "qualifying": {
-              "start": "2026-06-20T20:00:00Z",
-              "end": "2026-06-20T21:00:00Z"
-            },
+            "qualifying": { "start": "2026-06-20T20:00:00Z", "end": "2026-06-20T21:00:00Z" },
             "race": { "start": "2026-06-21T17:00:00Z", "end": null }
+          }
+        },
+        {
+          "round": 10,
+          "name": "Honda Indy 200 at Mid-Ohio",
+          "track": "Mid-Ohio Sports Car Course",
+          "location": "Lexington, USA",
+          "flag": "🇺🇸",
+          "start_date": "2026-07-04",
+          "end_date": "2026-07-05",
+          "sessions": {
+            "qualifying": { "start": "2026-07-04T20:00:00Z", "end": "2026-07-04T21:00:00Z" },
+            "race": { "start": "2026-07-05T17:00:00Z", "end": null }
           }
         }
       ]
@@ -457,51 +315,42 @@
       "color": "#FFD700",
       "events": [
         {
-          "round": 10,
-          "name": "Jack Link's 500",
-          "track": "Talladega Superspeedway",
-          "location": "Talladega, USA",
+          "round": 14,
+          "name": "Cracker Barrel 400",
+          "track": "Nashville Superspeedway",
+          "location": "Lebanon, USA",
           "flag": "🇺🇸",
-          "start_date": "2026-04-25",
-          "end_date": "2026-04-26",
+          "start_date": "2026-05-31",
+          "end_date": "2026-05-31",
           "sessions": {
-            "qualifying": {
-              "start": "2026-04-25T18:00:00Z",
-              "end": "2026-04-25T18:40:00Z"
-            },
-            "race": { "start": "2026-04-26T19:00:00Z", "end": null }
+            "qualifying": { "start": "2026-05-31T00:00:00Z", "end": "2026-05-31T00:40:00Z" },
+            "race": { "start": "2026-05-31T19:00:00Z", "end": null }
           }
         },
         {
-          "round": 11,
-          "name": "Würth 400",
-          "track": "Texas Motor Speedway",
-          "location": "Fort Worth, USA",
+          "round": 15,
+          "name": "FireKeepers Casino 400",
+          "track": "Michigan International Speedway",
+          "location": "Brooklyn, USA",
           "flag": "🇺🇸",
-          "start_date": "2026-05-02",
-          "end_date": "2026-05-03",
+          "start_date": "2026-06-07",
+          "end_date": "2026-06-07",
           "sessions": {
-            "qualifying": {
-              "start": "2026-05-02T23:00:00Z",
-              "end": "2026-05-02T23:40:00Z"
-            },
-            "race": { "start": "2026-05-03T19:30:00Z", "end": null }
+            "qualifying": { "start": "2026-06-07T00:00:00Z", "end": "2026-06-07T00:40:00Z" },
+            "race": { "start": "2026-06-07T15:00:00Z", "end": null }
           }
         },
         {
-          "round": 12,
-          "name": "Coca-Cola 600",
-          "track": "Charlotte Motor Speedway",
-          "location": "Concord, USA",
+          "round": 16,
+          "name": "Toyota/Save Mart 350",
+          "track": "Sonoma Raceway",
+          "location": "Sonoma, USA",
           "flag": "🇺🇸",
-          "start_date": "2026-05-24",
-          "end_date": "2026-05-25",
+          "start_date": "2026-06-14",
+          "end_date": "2026-06-14",
           "sessions": {
-            "qualifying": {
-              "start": "2026-05-23T00:00:00Z",
-              "end": "2026-05-23T01:00:00Z"
-            },
-            "race": { "start": "2026-05-24T23:00:00Z", "end": null }
+            "qualifying": { "start": "2026-06-14T00:00:00Z", "end": "2026-06-14T00:40:00Z" },
+            "race": { "start": "2026-06-14T20:00:00Z", "end": null }
           }
         }
       ]
@@ -513,22 +362,6 @@
       "color": "#E51B24",
       "events": [
         {
-          "round": 4,
-          "name": "Acura Sports Car Challenge at Mid-Ohio",
-          "track": "Mid-Ohio Sports Car Course",
-          "location": "Lexington, USA",
-          "flag": "🇺🇸",
-          "start_date": "2026-05-01",
-          "end_date": "2026-05-03",
-          "sessions": {
-            "qualifying": {
-              "start": "2026-05-02T17:00:00Z",
-              "end": "2026-05-02T17:35:00Z"
-            },
-            "race": { "start": "2026-05-03T17:00:00Z", "end": null }
-          }
-        },
-        {
           "round": 5,
           "name": "Chevrolet Sports Car Classic Detroit",
           "track": "Streets of Detroit",
@@ -537,10 +370,7 @@
           "start_date": "2026-05-29",
           "end_date": "2026-05-30",
           "sessions": {
-            "qualifying": {
-              "start": "2026-05-29T20:00:00Z",
-              "end": "2026-05-29T20:35:00Z"
-            },
+            "qualifying": { "start": "2026-05-29T20:00:00Z", "end": "2026-05-29T20:35:00Z" },
             "race": { "start": "2026-05-30T17:30:00Z", "end": null }
           }
         },
@@ -553,14 +383,21 @@
           "start_date": "2026-06-25",
           "end_date": "2026-06-28",
           "sessions": {
-            "qualifying": {
-              "start": "2026-06-27T00:00:00Z",
-              "end": "2026-06-27T01:00:00Z"
-            },
-            "race": {
-              "start": "2026-06-28T17:00:00Z",
-              "end": "2026-06-28T23:00:00Z"
-            }
+            "qualifying": { "start": "2026-06-27T00:00:00Z", "end": "2026-06-27T01:00:00Z" },
+            "race": { "start": "2026-06-28T17:00:00Z", "end": "2026-06-28T23:00:00Z" }
+          }
+        },
+        {
+          "round": 7,
+          "name": "Chevrolet Grand Prix",
+          "track": "Canadian Tire Motorsport Park",
+          "location": "Bowmanville, Canada",
+          "flag": "🇨🇦",
+          "start_date": "2026-07-10",
+          "end_date": "2026-07-12",
+          "sessions": {
+            "qualifying": { "start": "2026-07-11T20:00:00Z", "end": "2026-07-11T20:35:00Z" },
+            "race": { "start": "2026-07-12T17:00:00Z", "end": null }
           }
         }
       ]
@@ -572,27 +409,6 @@
       "color": "#EE3123",
       "events": [
         {
-          "round": 5,
-          "name": "Bunnings Trade Perth SuperNight",
-          "track": "Wanneroo Raceway",
-          "location": "Perth, Australia",
-          "flag": "🇦🇺",
-          "start_date": "2026-05-15",
-          "end_date": "2026-05-17",
-          "sessions": {
-            "qualifying1": {
-              "start": "2026-05-16T09:00:00Z",
-              "end": "2026-05-16T09:44:00Z"
-            },
-            "race1": { "start": "2026-05-16T12:00:00Z", "end": null },
-            "qualifying2": {
-              "start": "2026-05-17T09:00:00Z",
-              "end": "2026-05-17T09:44:00Z"
-            },
-            "race2": { "start": "2026-05-17T12:00:00Z", "end": null }
-          }
-        },
-        {
           "round": 6,
           "name": "Tyrepower Tasmania Super 440",
           "track": "Symmons Plains Raceway",
@@ -601,15 +417,9 @@
           "start_date": "2026-05-22",
           "end_date": "2026-05-24",
           "sessions": {
-            "qualifying1": {
-              "start": "2026-05-23T01:10:00Z",
-              "end": "2026-05-23T01:54:00Z"
-            },
+            "qualifying1": { "start": "2026-05-23T01:10:00Z", "end": "2026-05-23T01:54:00Z" },
             "race1": { "start": "2026-05-23T04:00:00Z", "end": null },
-            "qualifying2": {
-              "start": "2026-05-24T01:10:00Z",
-              "end": "2026-05-24T01:54:00Z"
-            },
+            "qualifying2": { "start": "2026-05-24T01:10:00Z", "end": "2026-05-24T01:54:00Z" },
             "race2": { "start": "2026-05-24T04:00:00Z", "end": null }
           }
         },
@@ -622,16 +432,25 @@
           "start_date": "2026-06-19",
           "end_date": "2026-06-21",
           "sessions": {
-            "qualifying1": {
-              "start": "2026-06-20T03:00:00Z",
-              "end": "2026-06-20T03:44:00Z"
-            },
+            "qualifying1": { "start": "2026-06-20T03:00:00Z", "end": "2026-06-20T03:44:00Z" },
             "race1": { "start": "2026-06-20T06:00:00Z", "end": null },
-            "qualifying2": {
-              "start": "2026-06-21T03:00:00Z",
-              "end": "2026-06-21T03:44:00Z"
-            },
+            "qualifying2": { "start": "2026-06-21T03:00:00Z", "end": "2026-06-21T03:44:00Z" },
             "race2": { "start": "2026-06-21T06:00:00Z", "end": null }
+          }
+        },
+        {
+          "round": 8,
+          "name": "NTI Townsville 500",
+          "track": "Townsville Street Circuit",
+          "location": "Townsville, Australia",
+          "flag": "🇦🇺",
+          "start_date": "2026-07-10",
+          "end_date": "2026-07-12",
+          "sessions": {
+            "qualifying1": { "start": "2026-07-11T03:00:00Z", "end": "2026-07-11T03:44:00Z" },
+            "race1": { "start": "2026-07-11T06:00:00Z", "end": null },
+            "qualifying2": { "start": "2026-07-12T03:00:00Z", "end": "2026-07-12T03:44:00Z" },
+            "race2": { "start": "2026-07-12T06:00:00Z", "end": null }
           }
         }
       ]
@@ -643,25 +462,6 @@
       "color": "#0012FF",
       "events": [
         {
-          "round": 3,
-          "name": "BTCC Brands Hatch Indy",
-          "track": "Brands Hatch Indy",
-          "location": "Brands Hatch, UK",
-          "flag": "🇬🇧",
-          "start_date": "2026-05-09",
-          "end_date": "2026-05-10",
-          "sessions": {
-            "qualifying": {
-              "start": "2026-05-09T13:00:00Z",
-              "end": "2026-05-09T13:35:00Z"
-            },
-            "qualifying_race": { "start": "2026-05-09T14:05:00Z", "end": null },
-            "race1": { "start": "2026-05-10T10:30:00Z", "end": null },
-            "race2": { "start": "2026-05-10T13:45:00Z", "end": null },
-            "race3": { "start": "2026-05-10T16:30:00Z", "end": null }
-          }
-        },
-        {
           "round": 4,
           "name": "BTCC Snetterton",
           "track": "Snetterton 300",
@@ -670,10 +470,7 @@
           "start_date": "2026-05-23",
           "end_date": "2026-05-24",
           "sessions": {
-            "qualifying": {
-              "start": "2026-05-23T13:00:00Z",
-              "end": "2026-05-23T13:35:00Z"
-            },
+            "qualifying": { "start": "2026-05-23T13:00:00Z", "end": "2026-05-23T13:35:00Z" },
             "qualifying_race": { "start": "2026-05-23T14:05:00Z", "end": null },
             "race1": { "start": "2026-05-24T10:30:00Z", "end": null },
             "race2": { "start": "2026-05-24T13:30:00Z", "end": null },
@@ -689,14 +486,27 @@
           "start_date": "2026-06-06",
           "end_date": "2026-06-07",
           "sessions": {
-            "qualifying": {
-              "start": "2026-06-06T13:00:00Z",
-              "end": "2026-06-06T13:35:00Z"
-            },
+            "qualifying": { "start": "2026-06-06T13:00:00Z", "end": "2026-06-06T13:35:00Z" },
             "qualifying_race": { "start": "2026-06-06T14:05:00Z", "end": null },
             "race1": { "start": "2026-06-07T10:30:00Z", "end": null },
             "race2": { "start": "2026-06-07T13:45:00Z", "end": null },
             "race3": { "start": "2026-06-07T16:30:00Z", "end": null }
+          }
+        },
+        {
+          "round": 6,
+          "name": "BTCC Thruxton",
+          "track": "Thruxton Circuit",
+          "location": "Thruxton, UK",
+          "flag": "🇬🇧",
+          "start_date": "2026-07-25",
+          "end_date": "2026-07-26",
+          "sessions": {
+            "qualifying": { "start": "2026-07-25T13:00:00Z", "end": "2026-07-25T13:35:00Z" },
+            "qualifying_race": { "start": "2026-07-25T14:05:00Z", "end": null },
+            "race1": { "start": "2026-07-26T10:30:00Z", "end": null },
+            "race2": { "start": "2026-07-26T13:30:00Z", "end": null },
+            "race3": { "start": "2026-07-26T16:20:00Z", "end": null }
           }
         }
       ]
@@ -708,29 +518,6 @@
       "color": "#E31E12",
       "events": [
         {
-          "round": 2,
-          "name": "GTWCE Brands Hatch",
-          "track": "Brands Hatch",
-          "location": "Brands Hatch, UK",
-          "flag": "🇬🇧",
-          "start_date": "2026-05-01",
-          "end_date": "2026-05-03",
-          "sessions": {
-            "qualifying": {
-              "start": "2026-05-02T13:00:00Z",
-              "end": "2026-05-02T13:40:00Z"
-            },
-            "race1": {
-              "start": "2026-05-02T15:30:00Z",
-              "end": "2026-05-02T16:30:00Z"
-            },
-            "race2": {
-              "start": "2026-05-03T10:30:00Z",
-              "end": "2026-05-03T11:30:00Z"
-            }
-          }
-        },
-        {
           "round": 3,
           "name": "GTWCE Monza",
           "track": "Autodromo Nazionale Monza",
@@ -739,18 +526,9 @@
           "start_date": "2026-05-30",
           "end_date": "2026-05-31",
           "sessions": {
-            "qualifying": {
-              "start": "2026-05-30T13:00:00Z",
-              "end": "2026-05-30T13:40:00Z"
-            },
-            "race1": {
-              "start": "2026-05-30T15:30:00Z",
-              "end": "2026-05-30T16:30:00Z"
-            },
-            "race2": {
-              "start": "2026-05-31T10:30:00Z",
-              "end": "2026-05-31T11:30:00Z"
-            }
+            "qualifying": { "start": "2026-05-30T13:00:00Z", "end": "2026-05-30T13:40:00Z" },
+            "race1": { "start": "2026-05-30T15:30:00Z", "end": "2026-05-30T16:30:00Z" },
+            "race2": { "start": "2026-05-31T10:30:00Z", "end": "2026-05-31T11:30:00Z" }
           }
         },
         {
@@ -762,18 +540,23 @@
           "start_date": "2026-06-20",
           "end_date": "2026-06-21",
           "sessions": {
-            "qualifying": {
-              "start": "2026-06-20T13:00:00Z",
-              "end": "2026-06-20T13:40:00Z"
-            },
-            "race1": {
-              "start": "2026-06-20T15:30:00Z",
-              "end": "2026-06-20T16:30:00Z"
-            },
-            "race2": {
-              "start": "2026-06-21T10:30:00Z",
-              "end": "2026-06-21T11:30:00Z"
-            }
+            "qualifying": { "start": "2026-06-20T13:00:00Z", "end": "2026-06-20T13:40:00Z" },
+            "race1": { "start": "2026-06-20T15:30:00Z", "end": "2026-06-20T16:30:00Z" },
+            "race2": { "start": "2026-06-21T10:30:00Z", "end": "2026-06-21T11:30:00Z" }
+          }
+        },
+        {
+          "round": 5,
+          "name": "GTWCE Spa",
+          "track": "Circuit de Spa-Francorchamps",
+          "location": "Spa, Belgium",
+          "flag": "🇧🇪",
+          "start_date": "2026-07-24",
+          "end_date": "2026-07-26",
+          "sessions": {
+            "qualifying": { "start": "2026-07-25T13:00:00Z", "end": "2026-07-25T13:40:00Z" },
+            "race1": { "start": "2026-07-25T15:30:00Z", "end": "2026-07-25T16:30:00Z" },
+            "race2": { "start": "2026-07-26T10:30:00Z", "end": "2026-07-26T11:30:00Z" }
           }
         }
       ]
@@ -785,25 +568,6 @@
       "color": "#FF5F00",
       "events": [
         {
-          "round": 2,
-          "name": "4 Hours of Le Castellet",
-          "track": "Circuit Paul Ricard",
-          "location": "Le Castellet, France",
-          "flag": "🇫🇷",
-          "start_date": "2026-05-01",
-          "end_date": "2026-05-03",
-          "sessions": {
-            "qualifying": {
-              "start": "2026-05-02T14:00:00Z",
-              "end": "2026-05-02T15:00:00Z"
-            },
-            "race": {
-              "start": "2026-05-03T10:00:00Z",
-              "end": "2026-05-03T14:00:00Z"
-            }
-          }
-        },
-        {
           "round": 3,
           "name": "4 Hours of Imola",
           "track": "Autodromo Enzo e Dino Ferrari",
@@ -812,14 +576,8 @@
           "start_date": "2026-07-03",
           "end_date": "2026-07-05",
           "sessions": {
-            "qualifying": {
-              "start": "2026-07-04T14:00:00Z",
-              "end": "2026-07-04T15:00:00Z"
-            },
-            "race": {
-              "start": "2026-07-05T10:00:00Z",
-              "end": "2026-07-05T14:00:00Z"
-            }
+            "qualifying": { "start": "2026-07-04T14:00:00Z", "end": "2026-07-04T15:00:00Z" },
+            "race": { "start": "2026-07-05T10:00:00Z", "end": "2026-07-05T14:00:00Z" }
           }
         },
         {
@@ -831,14 +589,21 @@
           "start_date": "2026-07-17",
           "end_date": "2026-07-19",
           "sessions": {
-            "qualifying": {
-              "start": "2026-07-18T14:00:00Z",
-              "end": "2026-07-18T15:00:00Z"
-            },
-            "race": {
-              "start": "2026-07-19T10:00:00Z",
-              "end": "2026-07-19T14:00:00Z"
-            }
+            "qualifying": { "start": "2026-07-18T14:00:00Z", "end": "2026-07-18T15:00:00Z" },
+            "race": { "start": "2026-07-19T10:00:00Z", "end": "2026-07-19T14:00:00Z" }
+          }
+        },
+        {
+          "round": 5,
+          "name": "4 Hours of Spa-Francorchamps",
+          "track": "Circuit de Spa-Francorchamps",
+          "location": "Spa, Belgium",
+          "flag": "🇧🇪",
+          "start_date": "2026-08-21",
+          "end_date": "2026-08-23",
+          "sessions": {
+            "qualifying": { "start": "2026-08-22T14:00:00Z", "end": "2026-08-22T15:00:00Z" },
+            "race": { "start": "2026-08-23T10:00:00Z", "end": "2026-08-23T14:00:00Z" }
           }
         }
       ]
@@ -850,37 +615,6 @@
       "color": "#067748",
       "events": [
         {
-          "round": 4,
-          "name": "ADAC 24h Qualifiers",
-          "track": "Nürburgring Nordschleife",
-          "location": "Nürburg, Germany",
-          "flag": "🇩🇪",
-          "start_date": "2026-04-17",
-          "end_date": "2026-04-19",
-          "sessions": {
-            "qualifying_race1": {
-              "start": "2026-04-18T06:30:00Z",
-              "end": "2026-04-18T08:00:00Z"
-            },
-            "race1": {
-              "start": "2026-04-18T15:30:00Z",
-              "end": "2026-04-18T19:30:00Z"
-            },
-            "top_qualifying": {
-              "start": "2026-04-19T08:40:00Z",
-              "end": "2026-04-19T09:40:00Z"
-            },
-            "qualifying_race2": {
-              "start": "2026-04-19T06:15:00Z",
-              "end": "2026-04-19T07:45:00Z"
-            },
-            "race2": {
-              "start": "2026-04-19T11:00:00Z",
-              "end": "2026-04-19T15:00:00Z"
-            }
-          }
-        },
-        {
           "round": 5,
           "name": "ADAC 24h Nürburgring",
           "track": "Nürburgring Nordschleife",
@@ -889,14 +623,8 @@
           "start_date": "2026-05-14",
           "end_date": "2026-05-17",
           "sessions": {
-            "qualifying": {
-              "start": "2026-05-15T06:00:00Z",
-              "end": "2026-05-15T07:30:00Z"
-            },
-            "race": {
-              "start": "2026-05-16T10:00:00Z",
-              "end": "2026-05-17T10:00:00Z"
-            }
+            "qualifying": { "start": "2026-05-15T06:00:00Z", "end": "2026-05-15T07:30:00Z" },
+            "race": { "start": "2026-05-16T10:00:00Z", "end": "2026-05-17T10:00:00Z" }
           }
         },
         {
@@ -908,14 +636,21 @@
           "start_date": "2026-06-13",
           "end_date": "2026-06-13",
           "sessions": {
-            "qualifying": {
-              "start": "2026-06-13T06:30:00Z",
-              "end": "2026-06-13T08:00:00Z"
-            },
-            "race": {
-              "start": "2026-06-13T10:00:00Z",
-              "end": "2026-06-13T14:00:00Z"
-            }
+            "qualifying": { "start": "2026-06-13T06:30:00Z", "end": "2026-06-13T08:00:00Z" },
+            "race": { "start": "2026-06-13T10:00:00Z", "end": "2026-06-13T14:00:00Z" }
+          }
+        },
+        {
+          "round": 7,
+          "name": "NLS 7",
+          "track": "Nürburgring Nordschleife",
+          "location": "Nürburg, Germany",
+          "flag": "🇩🇪",
+          "start_date": "2026-07-18",
+          "end_date": "2026-07-18",
+          "sessions": {
+            "qualifying": { "start": "2026-07-18T06:30:00Z", "end": "2026-07-18T08:00:00Z" },
+            "race": { "start": "2026-07-18T10:00:00Z", "end": "2026-07-18T14:00:00Z" }
           }
         }
       ]
