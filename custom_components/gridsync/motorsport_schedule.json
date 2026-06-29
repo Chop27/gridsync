@@ -1,6 +1,6 @@
 {
-  "version": "2026.6.16",
-  "last_updated": "2026-06-16",
+  "version": "2026.6.29",
+  "last_updated": "2026-06-29",
   "series": {
     "f1": {
       "name": "Formula 1",
@@ -8,22 +8,6 @@
       "logo": "f1.png",
       "color": "#E10600",
       "events": [
-        {
-          "round": 8,
-          "name": "Austrian Grand Prix",
-          "track": "Red Bull Ring",
-          "location": "Spielberg, Austria",
-          "flag": "🇦🇹",
-          "start_date": "2026-06-26",
-          "end_date": "2026-06-28",
-          "sessions": {
-            "practice1": { "start": "2026-06-26T11:30:00Z", "end": "2026-06-26T12:30:00Z" },
-            "practice2": { "start": "2026-06-26T15:00:00Z", "end": "2026-06-26T16:00:00Z" },
-            "practice3": { "start": "2026-06-27T10:30:00Z", "end": "2026-06-27T11:30:00Z" },
-            "qualifying": { "start": "2026-06-27T14:00:00Z", "end": "2026-06-27T15:00:00Z" },
-            "race": { "start": "2026-06-28T13:00:00Z", "end": null }
-          }
-        },
         {
           "round": 9,
           "name": "British Grand Prix",
@@ -55,6 +39,22 @@
             "qualifying": { "start": "2026-07-18T14:00:00Z", "end": "2026-07-18T15:00:00Z" },
             "race": { "start": "2026-07-19T13:00:00Z", "end": null }
           }
+        },
+        {
+          "round": 11,
+          "name": "Hungarian Grand Prix",
+          "track": "Hungaroring",
+          "location": "Budapest, Hungary",
+          "flag": "🇭🇺",
+          "start_date": "2026-07-24",
+          "end_date": "2026-07-26",
+          "sessions": {
+            "practice1": { "start": "2026-07-24T11:30:00Z", "end": "2026-07-24T12:30:00Z" },
+            "practice2": { "start": "2026-07-24T15:00:00Z", "end": "2026-07-24T16:00:00Z" },
+            "practice3": { "start": "2026-07-25T10:30:00Z", "end": "2026-07-25T11:30:00Z" },
+            "qualifying": { "start": "2026-07-25T14:00:00Z", "end": "2026-07-25T15:00:00Z" },
+            "race": { "start": "2026-07-26T13:00:00Z", "end": null }
+          }
         }
       ]
     },
@@ -65,21 +65,6 @@
       "color": "#004267",
       "events": [
         {
-          "round": 6,
-          "name": "Spielberg F2",
-          "track": "Red Bull Ring",
-          "location": "Spielberg, Austria",
-          "flag": "🇦🇹",
-          "start_date": "2026-06-26",
-          "end_date": "2026-06-28",
-          "sessions": {
-            "free_practice": { "start": "2026-06-26T09:05:00Z", "end": "2026-06-26T09:35:00Z" },
-            "qualifying": { "start": "2026-06-26T13:55:00Z", "end": "2026-06-26T14:25:00Z" },
-            "sprint_race": { "start": "2026-06-27T12:15:00Z", "end": null },
-            "feature_race": { "start": "2026-06-28T08:00:00Z", "end": null }
-          }
-        },
-        {
           "round": 7,
           "name": "Silverstone F2",
           "track": "Silverstone Circuit",
@@ -88,10 +73,10 @@
           "start_date": "2026-07-03",
           "end_date": "2026-07-05",
           "sessions": {
-            "free_practice": { "start": "2026-07-03T09:05:00Z", "end": "2026-07-03T09:35:00Z" },
+            "free_practice": { "start": "2026-07-03T09:00:00Z", "end": "2026-07-03T09:30:00Z" },
             "qualifying": { "start": "2026-07-03T13:55:00Z", "end": "2026-07-03T14:25:00Z" },
-            "sprint_race": { "start": "2026-07-04T12:15:00Z", "end": null },
-            "feature_race": { "start": "2026-07-05T10:05:00Z", "end": null }
+            "sprint_race": { "start": "2026-07-04T12:45:00Z", "end": null },
+            "feature_race": { "start": "2026-07-05T10:15:00Z", "end": null }
           }
         },
         {
@@ -108,6 +93,21 @@
             "sprint_race": { "start": "2026-07-18T12:15:00Z", "end": null },
             "feature_race": { "start": "2026-07-19T08:00:00Z", "end": null }
           }
+        },
+        {
+          "round": 9,
+          "name": "Budapest F2",
+          "track": "Hungaroring",
+          "location": "Budapest, Hungary",
+          "flag": "🇭🇺",
+          "start_date": "2026-07-24",
+          "end_date": "2026-07-26",
+          "sessions": {
+            "free_practice": { "start": "2026-07-24T09:05:00Z", "end": "2026-07-24T09:35:00Z" },
+            "qualifying": { "start": "2026-07-24T13:55:00Z", "end": "2026-07-24T14:25:00Z" },
+            "sprint_race": { "start": "2026-07-25T12:15:00Z", "end": null },
+            "feature_race": { "start": "2026-07-26T08:15:00Z", "end": null }
+          }
         }
       ]
     },
@@ -117,21 +117,6 @@
       "logo": "f3.png",
       "color": "#676767",
       "events": [
-        {
-          "round": 4,
-          "name": "Spielberg F3",
-          "track": "Red Bull Ring",
-          "location": "Spielberg, Austria",
-          "flag": "🇦🇹",
-          "start_date": "2026-06-26",
-          "end_date": "2026-06-28",
-          "sessions": {
-            "free_practice": { "start": "2026-06-26T07:55:00Z", "end": "2026-06-26T08:25:00Z" },
-            "qualifying": { "start": "2026-06-26T13:00:00Z", "end": "2026-06-26T13:30:00Z" },
-            "sprint_race": { "start": "2026-06-27T08:05:00Z", "end": null },
-            "feature_race": { "start": "2026-06-28T06:30:00Z", "end": null }
-          }
-        },
         {
           "round": 5,
           "name": "Silverstone F3",
@@ -161,6 +146,21 @@
             "sprint_race": { "start": "2026-07-18T08:05:00Z", "end": null },
             "feature_race": { "start": "2026-07-19T06:30:00Z", "end": null }
           }
+        },
+        {
+          "round": 7,
+          "name": "Budapest F3",
+          "track": "Hungaroring",
+          "location": "Budapest, Hungary",
+          "flag": "🇭🇺",
+          "start_date": "2026-08-21",
+          "end_date": "2026-08-23",
+          "sessions": {
+            "free_practice": { "start": "2026-08-21T07:55:00Z", "end": "2026-08-21T08:25:00Z" },
+            "qualifying": { "start": "2026-08-21T13:00:00Z", "end": "2026-08-21T13:30:00Z" },
+            "sprint_race": { "start": "2026-08-22T08:05:00Z", "end": null },
+            "feature_race": { "start": "2026-08-23T06:30:00Z", "end": null }
+          }
         }
       ]
     },
@@ -170,22 +170,6 @@
       "logo": "wrc.png",
       "color": "#E0E0E0",
       "events": [
-        {
-          "round": 8,
-          "name": "WRC EKO Acropolis Rally Greece",
-          "track": "Varies",
-          "location": "Loutraki, Greece",
-          "flag": "🇬🇷",
-          "start_date": "2026-06-25",
-          "end_date": "2026-06-28",
-          "sessions": {
-            "shakedown": { "start": "2026-06-25T07:00:00Z", "end": "2026-06-25T10:00:00Z" },
-            "day1": { "start": "2026-06-25T14:45:00Z", "end": null },
-            "day2": { "start": "2026-06-26T07:00:00Z", "end": null },
-            "day3": { "start": "2026-06-27T07:00:00Z", "end": null },
-            "power_stage": { "start": "2026-06-28T07:00:00Z", "end": null }
-          }
-        },
         {
           "round": 9,
           "name": "WRC Delfi Rally Estonia",
@@ -216,6 +200,22 @@
             "day2": { "start": "2026-07-31T07:00:00Z", "end": null },
             "day3": { "start": "2026-08-01T07:00:00Z", "end": null },
             "power_stage": { "start": "2026-08-02T07:00:00Z", "end": null }
+          }
+        },
+        {
+          "round": 11,
+          "name": "WRC ueno Rally del Paraguay",
+          "track": "Varies",
+          "location": "Asunción, Paraguay",
+          "flag": "🇵🇾",
+          "start_date": "2026-08-27",
+          "end_date": "2026-08-30",
+          "sessions": {
+            "shakedown": { "start": "2026-08-27T14:00:00Z", "end": "2026-08-27T17:00:00Z" },
+            "day1": { "start": "2026-08-27T22:00:00Z", "end": null },
+            "day2": { "start": "2026-08-28T13:00:00Z", "end": null },
+            "day3": { "start": "2026-08-29T13:00:00Z", "end": null },
+            "power_stage": { "start": "2026-08-30T13:00:00Z", "end": null }
           }
         }
       ]
@@ -276,19 +276,6 @@
       "color": "#0072BC",
       "events": [
         {
-          "round": 9,
-          "name": "XPEL Grand Prix at Road America",
-          "track": "Road America",
-          "location": "Elkhart Lake, USA",
-          "flag": "🇺🇸",
-          "start_date": "2026-06-20",
-          "end_date": "2026-06-21",
-          "sessions": {
-            "qualifying": { "start": "2026-06-20T20:00:00Z", "end": "2026-06-20T21:00:00Z" },
-            "race": { "start": "2026-06-21T17:00:00Z", "end": null }
-          }
-        },
-        {
           "round": 10,
           "name": "Honda Indy 200 at Mid-Ohio",
           "track": "Mid-Ohio Sports Car Course",
@@ -313,6 +300,19 @@
             "qualifying": { "start": "2026-07-18T20:00:00Z", "end": "2026-07-18T21:00:00Z" },
             "race": { "start": "2026-07-19T17:00:00Z", "end": null }
           }
+        },
+        {
+          "round": 12,
+          "name": "Grand Prix of Portland",
+          "track": "Portland International Raceway",
+          "location": "Portland, USA",
+          "flag": "🇺🇸",
+          "start_date": "2026-08-08",
+          "end_date": "2026-08-09",
+          "sessions": {
+            "qualifying": { "start": "2026-08-08T20:00:00Z", "end": "2026-08-08T21:00:00Z" },
+            "race": { "start": "2026-08-09T17:00:00Z", "end": null }
+          }
         }
       ]
     },
@@ -322,32 +322,6 @@
       "logo": "nascar.png",
       "color": "#FFD700",
       "events": [
-        {
-          "round": 17,
-          "name": "Anduril 250",
-          "track": "Qualcomm Circuit (Naval Base Coronado)",
-          "location": "San Diego, USA",
-          "flag": "🇺🇸",
-          "start_date": "2026-06-19",
-          "end_date": "2026-06-21",
-          "sessions": {
-            "qualifying": { "start": "2026-06-20T21:00:00Z", "end": "2026-06-20T21:40:00Z" },
-            "race": { "start": "2026-06-21T20:00:00Z", "end": null }
-          }
-        },
-        {
-          "round": 18,
-          "name": "Toyota/Save Mart 350",
-          "track": "Sonoma Raceway",
-          "location": "Sonoma, USA",
-          "flag": "🇺🇸",
-          "start_date": "2026-06-26",
-          "end_date": "2026-06-28",
-          "sessions": {
-            "qualifying": { "start": "2026-06-27T21:00:00Z", "end": "2026-06-27T21:40:00Z" },
-            "race": { "start": "2026-06-28T19:30:00Z", "end": null }
-          }
-        },
         {
           "round": 19,
           "name": "Chicagoland 400",
@@ -360,6 +334,32 @@
             "qualifying": { "start": "2026-07-04T21:00:00Z", "end": "2026-07-04T21:40:00Z" },
             "race": { "start": "2026-07-05T22:00:00Z", "end": null }
           }
+        },
+        {
+          "round": 20,
+          "name": "EchoPark 400",
+          "track": "EchoPark Speedway",
+          "location": "Hampton, USA",
+          "flag": "🇺🇸",
+          "start_date": "2026-07-11",
+          "end_date": "2026-07-12",
+          "sessions": {
+            "qualifying": { "start": "2026-07-11T21:00:00Z", "end": "2026-07-11T21:40:00Z" },
+            "race": { "start": "2026-07-12T23:00:00Z", "end": null }
+          }
+        },
+        {
+          "round": 21,
+          "name": "All-Star Open at North Wilkesboro",
+          "track": "North Wilkesboro Speedway",
+          "location": "North Wilkesboro, USA",
+          "flag": "🇺🇸",
+          "start_date": "2026-07-18",
+          "end_date": "2026-07-19",
+          "sessions": {
+            "qualifying": { "start": "2026-07-18T21:00:00Z", "end": "2026-07-18T21:40:00Z" },
+            "race": { "start": "2026-07-19T19:00:00Z", "end": null }
+          }
         }
       ]
     },
@@ -369,19 +369,6 @@
       "logo": "imsa.png",
       "color": "#E51B24",
       "events": [
-        {
-          "round": 6,
-          "name": "Six Hours of The Glen",
-          "track": "Watkins Glen International",
-          "location": "Watkins Glen, USA",
-          "flag": "🇺🇸",
-          "start_date": "2026-06-25",
-          "end_date": "2026-06-27",
-          "sessions": {
-            "qualifying": { "start": "2026-06-26T17:00:00Z", "end": "2026-06-26T17:35:00Z" },
-            "race": { "start": "2026-06-27T16:10:00Z", "end": "2026-06-27T22:10:00Z" }
-          }
-        },
         {
           "round": 7,
           "name": "Chevrolet Grand Prix",
@@ -407,6 +394,19 @@
             "qualifying": { "start": "2026-08-01T17:00:00Z", "end": "2026-08-01T17:35:00Z" },
             "race": { "start": "2026-08-02T18:10:00Z", "end": null }
           }
+        },
+        {
+          "round": 9,
+          "name": "GT Challenge at VIR",
+          "track": "Virginia International Raceway",
+          "location": "Alton, USA",
+          "flag": "🇺🇸",
+          "start_date": "2026-08-20",
+          "end_date": "2026-08-22",
+          "sessions": {
+            "qualifying": { "start": "2026-08-21T17:00:00Z", "end": "2026-08-21T17:35:00Z" },
+            "race": { "start": "2026-08-22T18:10:00Z", "end": null }
+          }
         }
       ]
     },
@@ -416,21 +416,6 @@
       "logo": "supercars.png",
       "color": "#EE3123",
       "events": [
-        {
-          "round": 7,
-          "name": "Darwin Triple Crown",
-          "track": "Hidden Valley Raceway",
-          "location": "Darwin, Australia",
-          "flag": "🇦🇺",
-          "start_date": "2026-06-19",
-          "end_date": "2026-06-21",
-          "sessions": {
-            "qualifying1": { "start": "2026-06-20T03:00:00Z", "end": "2026-06-20T03:44:00Z" },
-            "race1": { "start": "2026-06-20T06:00:00Z", "end": null },
-            "qualifying2": { "start": "2026-06-21T03:00:00Z", "end": "2026-06-21T03:44:00Z" },
-            "race2": { "start": "2026-06-21T06:00:00Z", "end": null }
-          }
-        },
         {
           "round": 8,
           "name": "NTI Townsville 500",
@@ -459,6 +444,21 @@
             "race1": { "start": "2026-08-01T06:00:00Z", "end": null },
             "qualifying2": { "start": "2026-08-02T03:00:00Z", "end": "2026-08-02T03:44:00Z" },
             "race2": { "start": "2026-08-02T06:00:00Z", "end": null }
+          }
+        },
+        {
+          "round": 10,
+          "name": "Ipswich Super 440",
+          "track": "Queensland Raceway",
+          "location": "Ipswich, Australia",
+          "flag": "🇦🇺",
+          "start_date": "2026-08-21",
+          "end_date": "2026-08-23",
+          "sessions": {
+            "qualifying1": { "start": "2026-08-22T02:00:00Z", "end": "2026-08-22T02:44:00Z" },
+            "race1": { "start": "2026-08-22T05:00:00Z", "end": null },
+            "qualifying2": { "start": "2026-08-23T02:00:00Z", "end": "2026-08-23T02:44:00Z" },
+            "race2": { "start": "2026-08-23T05:00:00Z", "end": null }
           }
         }
       ]
@@ -526,20 +526,6 @@
       "color": "#E31E12",
       "events": [
         {
-          "round": 4,
-          "name": "CrowdStrike 24 Hours of Spa",
-          "track": "Circuit de Spa-Francorchamps",
-          "location": "Spa, Belgium",
-          "flag": "🇧🇪",
-          "start_date": "2026-06-24",
-          "end_date": "2026-06-28",
-          "sessions": {
-            "qualifying": { "start": "2026-06-25T14:00:00Z", "end": "2026-06-25T14:40:00Z" },
-            "hyperpole": { "start": "2026-06-25T18:00:00Z", "end": "2026-06-25T18:20:00Z" },
-            "race": { "start": "2026-06-27T14:30:00Z", "end": "2026-06-28T14:30:00Z" }
-          }
-        },
-        {
           "round": 5,
           "name": "GTWCE Misano",
           "track": "Misano World Circuit Marco Simoncelli",
@@ -565,6 +551,20 @@
             "qualifying": { "start": "2026-08-01T13:00:00Z", "end": "2026-08-01T13:40:00Z" },
             "race1": { "start": "2026-08-01T15:30:00Z", "end": "2026-08-01T16:30:00Z" },
             "race2": { "start": "2026-08-02T10:30:00Z", "end": "2026-08-02T11:30:00Z" }
+          }
+        },
+        {
+          "round": 7,
+          "name": "GTWCE Nürburgring",
+          "track": "Nürburgring",
+          "location": "Nürburg, Germany",
+          "flag": "🇩🇪",
+          "start_date": "2026-08-28",
+          "end_date": "2026-08-30",
+          "sessions": {
+            "qualifying": { "start": "2026-08-29T13:00:00Z", "end": "2026-08-29T13:40:00Z" },
+            "race1": { "start": "2026-08-29T15:30:00Z", "end": "2026-08-29T16:30:00Z" },
+            "race2": { "start": "2026-08-30T10:30:00Z", "end": "2026-08-30T11:30:00Z" }
           }
         }
       ]
@@ -623,19 +623,6 @@
       "color": "#067748",
       "events": [
         {
-          "round": 6,
-          "name": "NLS 6 – 1. ADAC Eifel Trophy",
-          "track": "Nürburgring Nordschleife",
-          "location": "Nürburg, Germany",
-          "flag": "🇩🇪",
-          "start_date": "2026-06-20",
-          "end_date": "2026-06-20",
-          "sessions": {
-            "qualifying": { "start": "2026-06-20T06:30:00Z", "end": "2026-06-20T08:00:00Z" },
-            "race": { "start": "2026-06-20T10:00:00Z", "end": "2026-06-20T14:00:00Z" }
-          }
-        },
-        {
           "round": 7,
           "name": "NLS 7 – KW 6h ADAC Ruhr-Pokal-Rennen",
           "track": "Nürburgring Nordschleife",
@@ -659,6 +646,19 @@
           "sessions": {
             "qualifying": { "start": "2026-09-12T06:30:00Z", "end": "2026-09-12T08:00:00Z" },
             "race": { "start": "2026-09-12T10:00:00Z", "end": "2026-09-12T14:00:00Z" }
+          }
+        },
+        {
+          "round": 9,
+          "name": "NLS 9 – 66. ADAC ACAS Cup",
+          "track": "Nürburgring Nordschleife",
+          "location": "Nürburg, Germany",
+          "flag": "🇩🇪",
+          "start_date": "2026-09-13",
+          "end_date": "2026-09-13",
+          "sessions": {
+            "qualifying": { "start": "2026-09-13T06:30:00Z", "end": "2026-09-13T08:00:00Z" },
+            "race": { "start": "2026-09-13T10:00:00Z", "end": "2026-09-13T14:00:00Z" }
           }
         }
       ]
